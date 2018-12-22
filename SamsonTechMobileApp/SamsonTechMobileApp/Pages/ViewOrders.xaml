@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SamsonTechMobileApp.Pages.ViewOrders">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+            <Label Text="Filter" HorizontalTextAlignment="Center" FontSize="30"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Picker Title="" x:Name="lstMonth" WidthRequest="150" SelectedIndexChanged="lstMonth_SelectedIndexChanged" TextColor="Black">
+                    <Picker.Items>
+                        <x:String>Jan</x:String>
+                        <x:String>Feb</x:String>
+                        <x:String>Mar</x:String>
+                        <x:String>Apr</x:String>
+                        <x:String>May</x:String>
+                        <x:String>June</x:String>
+                        <x:String>July</x:String>
+                        <x:String>Aug</x:String>
+                        <x:String>Sep</x:String>
+                        <x:String>Oct</x:String>
+                        <x:String>Nov</x:String>
+                        <x:String>Dec</x:String>
+                    </Picker.Items>
+                    <Picker.SelectedIndex>
+                        -1
+                    </Picker.SelectedIndex>
+                </Picker>
+                <Picker Title="" x:Name="lstYear" WidthRequest="150" SelectedIndexChanged="lstYear_SelectedIndexChanged" TextColor="Black">
+                    <Picker.Items>
+                        <x:String>2018</x:String>
+                        <x:String>2019</x:String>
+                        <x:String>2020</x:String>
+                        <x:String>2021</x:String>
+                    </Picker.Items>
+                    <Picker.SelectedIndex>
+                        -1
+                    </Picker.SelectedIndex>
+                </Picker>
+            </StackLayout>
+            <ListView ItemsSource="" x:Name="listOrders" ItemSelected="listOrders_ItemSelected"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

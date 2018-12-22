@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SamsonTechMobileApp.Pages.ViewOrder">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+            <Label Text="Name:" HorizontalTextAlignment="Center"/>
+            <Label Text="" x:Name="txtName" HorizontalTextAlignment="Center"/>
+            <Label Text="Contact:" HorizontalTextAlignment="Center"/>
+            <Label Text="" x:Name="txtContact" HorizontalTextAlignment="Center"/>
+            <Label Text="Date:" HorizontalTextAlignment="Center"/>
+            <Label Text="" x:Name="txtDate" HorizontalTextAlignment="Center"/>
+            <Label Text="Device/Devices:" HorizontalTextAlignment="Center"/>
+            <StackLayout Orientation="Vertical" x:Name="deviceLabels" HorizontalOptions="CenterAndExpand">
+
+            </StackLayout>
+            <Label Text="Reason:" HorizontalTextAlignment="Center"/>
+            <Label Text="" x:Name="txtReason" HorizontalTextAlignment="Center"/>
+            <Label Text="Price:" HorizontalTextAlignment="Center"/>
+            <Label Text="" x:Name="txtPrice" HorizontalTextAlignment="Center"/>
+            <Label Text="Part:" HorizontalTextAlignment="Center"/>
+            <Label Text="" x:Name="txtPart" HorizontalTextAlignment="Center"/>
+            <Label Text="Cost:" HorizontalTextAlignment="Center"/>
+            <Label Text="" x:Name="txtCost" HorizontalTextAlignment="Center"/>
+            <Label Text="Completed:" HorizontalTextAlignment="Center"/>
+            <Label Text="" x:Name="txtCompleted" HorizontalTextAlignment="Center"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button Text="Delete" x:Name="btnDelete" Clicked="btnDelete_Clicked"/>
+                <Button Text="Edit" x:Name="btnEdit" Clicked="btnEdit_Clicked"/>
+                <Button Text="Complete" x:Name="btnComplete" Clicked="btnComplete_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

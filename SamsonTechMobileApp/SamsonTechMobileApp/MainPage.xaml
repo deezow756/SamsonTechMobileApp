@@ -1,14 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:SamsonTechMobileApp"
              x:Class="SamsonTechMobileApp.MainPage">
-
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
-
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <Label Text="Login" FontSize="50" HorizontalOptions="CenterAndExpand" />
+            <Label Text="" x:Name="txtPasscode" FontSize="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Button x:Name="btn1" Text="1" Clicked="btn1_Clicked" FontSize="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="120" HeightRequest="110"/>
+                <Button x:Name="btn2" Text="2" Clicked="btn2_Clicked" FontSize="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="120" HeightRequest="110"/>
+                <Button x:Name="btn3" Text="3" Clicked="btn3_Clicked" FontSize="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="120" HeightRequest="110"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Button x:Name="btn4" Text="4" Clicked="btn4_Clicked" FontSize="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="120" HeightRequest="110"/>
+                <Button x:Name="btn5" Text="5" Clicked="btn5_Clicked" FontSize="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="120" HeightRequest="110"/>
+                <Button x:Name="btn6" Text="6" Clicked="btn6_Clicked" FontSize="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="120" HeightRequest="110"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Button x:Name="btn7" Text="7" Clicked="btn7_Clicked" FontSize="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="120" HeightRequest="110"/>
+                <Button x:Name="btn8" Text="8" Clicked="btn8_Clicked" FontSize="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="120" HeightRequest="110"/>
+                <Button x:Name="btn9" Text="9" Clicked="btn9_Clicked" FontSize="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="120" HeightRequest="110"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Button x:Name="btnBk" Text="Back  Space" Clicked="btnBk_Clicked" FontSize="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="120" HeightRequest="110"/>
+                <Button x:Name="btn0" Text="0" Clicked="btn0_Clicked" FontSize="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="120" HeightRequest="110"/>
+                <Button x:Name="btnSubmit" Text="Submit" Clicked="btnSubmit_Clicked" FontSize="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="120" HeightRequest="110"/>
+            </StackLayout>
+            <Label Text="Try Finger Print" FontSize="30" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

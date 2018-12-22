@@ -3,15 +3,164 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Plugin.Fingerprint;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace SamsonTechMobileApp
 {
-    public partial class MainPage : ContentPage
-    {
-        public MainPage()
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class MainPage : ContentPage
+	{
+		public MainPage ()
+		{
+			InitializeComponent ();
+            //FingerPrint();
+		}
+
+        public async void FingerPrint()
         {
-            InitializeComponent();
+            var result = await CrossFingerprint.Current.IsAvailableAsync(true);
+            if (result)
+            {
+                var auth = await CrossFingerprint.Current.AuthenticateAsync("Authenticate Access To SamsonTech");
+                if (auth.Authenticated)
+                {
+                    Menu menu = new Menu();
+                    await Navigation.PushAsync(menu);
+                }
+                else
+                {
+                    await DisplayAlert("Warning", "Please Register FingerPrint To Use This Service", "Ok");
+                }
+            }
+            else
+            {
+                await DisplayAlert("Warning","Cant Use Finger Print Login","Ok");
+            }
+        }
+
+        private void btn0_Clicked(object sender, EventArgs e)
+        {
+            string passCode = txtPasscode.Text;
+            passCode += "0";
+            txtPasscode.Text = passCode;
+            CheckPassCodeCount();
+        }
+        private void btn1_Clicked(object sender, EventArgs e)
+        {
+            string passCode = txtPasscode.Text;
+            passCode += "1";
+            txtPasscode.Text = passCode;
+            CheckPassCodeCount();
+        }
+        private void btn2_Clicked(object sender, EventArgs e)
+        {
+            string passCode = txtPasscode.Text;
+            passCode += "2";
+            txtPasscode.Text = passCode;
+            CheckPassCodeCount();
+        }
+        private void btn3_Clicked(object sender, EventArgs e)
+        {
+            string passCode = txtPasscode.Text;
+            passCode += "3";
+            txtPasscode.Text = passCode;
+            CheckPassCodeCount();
+        }
+        private void btn4_Clicked(object sender, EventArgs e)
+        {
+            string passCode = txtPasscode.Text;
+            passCode += "4";
+            txtPasscode.Text = passCode;
+            CheckPassCodeCount();
+        }
+        private void btn5_Clicked(object sender, EventArgs e)
+        {
+            string passCode = txtPasscode.Text;
+            passCode += "5";
+            txtPasscode.Text = passCode;
+            CheckPassCodeCount();
+        }
+        private void btn6_Clicked(object sender, EventArgs e)
+        {
+            string passCode = txtPasscode.Text;
+            passCode += "6";
+            txtPasscode.Text = passCode;
+            CheckPassCodeCount();
+        }
+        private void btn7_Clicked(object sender, EventArgs e)
+        {
+            string passCode = txtPasscode.Text;
+            passCode += "7";
+            txtPasscode.Text = passCode;
+            CheckPassCodeCount();
+        }
+        private void btn8_Clicked(object sender, EventArgs e)
+        {
+            string passCode = txtPasscode.Text;
+            passCode += "8";
+            txtPasscode.Text = passCode;
+            CheckPassCodeCount();
+        }
+        private void btn9_Clicked(object sender, EventArgs e)
+        {
+            string passCode = txtPasscode.Text;
+            passCode += "9";
+            txtPasscode.Text = passCode;
+            CheckPassCodeCount();
+        }
+        private void btnBk_Clicked(object sender, EventArgs e)
+        {
+            string passCode = txtPasscode.Text;
+
+            if (passCode != "")
+            {
+                List<char> lstPassCode = passCode.ToList();
+                lstPassCode.RemoveAt(lstPassCode.Count - 1);
+                txtPasscode.Text = lstPassCode.ToString();
+                CheckPassCodeCount();
+            }
+        }
+        private void btnSubmit_Clicked(object sender, EventArgs e)
+        {
+            Menu menu = new Menu();
+            this.Navigation.PushAsync(menu);
+        }
+
+        private void CheckPassCodeCount()
+        {
+            string passCode = txtPasscode.Text;
+            if (passCode.Length >= 6)
+            {
+                char[] arPassCode = txtPasscode.Text.ToArray();
+                if (arPassCode.Length >= 6)
+                {
+                    btn0.IsEnabled = false;
+                    btn1.IsEnabled = false;
+                    btn2.IsEnabled = false;
+                    btn3.IsEnabled = false;
+                    btn4.IsEnabled = false;
+                    btn5.IsEnabled = false;
+                    btn6.IsEnabled = false;
+                    btn7.IsEnabled = false;
+                    btn8.IsEnabled = false;
+                    btn9.IsEnabled = false;
+                }
+                else
+                {
+                    btn0.IsEnabled = true;
+                    btn1.IsEnabled = true;
+                    btn2.IsEnabled = true;
+                    btn3.IsEnabled = true;
+                    btn4.IsEnabled = true;
+                    btn5.IsEnabled = true;
+                    btn6.IsEnabled = true;
+                    btn7.IsEnabled = true;
+                    btn8.IsEnabled = true;
+                    btn9.IsEnabled = true;
+                }
+            }
         }
     }
 }
