@@ -26,7 +26,7 @@
                 <Button x:Name="btn0" Text="0" Clicked="btn0_Clicked" FontSize="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="120" HeightRequest="110"/>
                 <Button x:Name="btnSubmit" Text="Submit" Clicked="btnSubmit_Clicked" FontSize="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="120" HeightRequest="110"/>
             </StackLayout>
-            <Label Text="Try Finger Print" FontSize="30" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            <Button Text="Try Finger Print" x:Name="btnFingerPrint" FontSize="30" Clicked="BtnFingerPrint_Clicked" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -15,28 +15,19 @@ namespace SamsonTechMobileApp
 		public MainPage ()
 		{
 			InitializeComponent ();
-            //FingerPrint();
+            FingerPrint();
 		}
 
         public async void FingerPrint()
         {
-            var result = await CrossFingerprint.Current.IsAvailableAsync(true);
-            if (result)
+            var cancellationTocken = new System.Threading.CancellationToken();
+            var auth = await CrossFingerprint.Current.AuthenticateAsync("Touch Finger Print Sensor", cancellationTocken);
+            if (auth.Authenticated)
             {
-                var auth = await CrossFingerprint.Current.AuthenticateAsync("Authenticate Access To SamsonTech");
-                if (auth.Authenticated)
-                {
-                    Menu menu = new Menu();
-                    await Navigation.PushAsync(menu);
-                }
-                else
-                {
-                    await DisplayAlert("Warning", "Please Register FingerPrint To Use This Service", "Ok");
-                }
-            }
-            else
-            {
-                await DisplayAlert("Warning","Cant Use Finger Print Login","Ok");
+                Progress.Show();
+                Menu menu = new Menu();
+                await Navigation.PushAsync(menu);
+                Progress.Hide();
             }
         }
 
@@ -116,16 +107,36 @@ namespace SamsonTechMobileApp
 
             if (passCode != "")
             {
-                List<char> lstPassCode = passCode.ToList();
-                lstPassCode.RemoveAt(lstPassCode.Count - 1);
-                txtPasscode.Text = lstPassCode.ToString();
+                char[] passcodeSplit = passCode.ToArray();
+                passCode = "";
+
+                if (passcodeSplit.Length > 1)
+                {
+                    for (int i = 0; i < passcodeSplit.Length - 1; i++)
+                    {
+                        passCode += passcodeSplit[i];
+                    }
+                }
+
+                txtPasscode.Text = passCode;
                 CheckPassCodeCount();
             }
         }
         private void btnSubmit_Clicked(object sender, EventArgs e)
         {
-            Menu menu = new Menu();
-            this.Navigation.PushAsync(menu);
+            string passCode = txtPasscode.Text;
+            string correctPassCode = "000000";
+
+            if (passCode == correctPassCode)
+            {
+                Menu menu = new Menu();
+                this.Navigation.PushAsync(menu);
+            }
+            else
+            {
+                DisplayAlert("Incorrect","Incorrect Password","Ok");
+                txtPasscode.Text = "";
+            }
         }
 
         private void CheckPassCodeCount()
@@ -133,34 +144,35 @@ namespace SamsonTechMobileApp
             string passCode = txtPasscode.Text;
             if (passCode.Length >= 6)
             {
-                char[] arPassCode = txtPasscode.Text.ToArray();
-                if (arPassCode.Length >= 6)
-                {
-                    btn0.IsEnabled = false;
-                    btn1.IsEnabled = false;
-                    btn2.IsEnabled = false;
-                    btn3.IsEnabled = false;
-                    btn4.IsEnabled = false;
-                    btn5.IsEnabled = false;
-                    btn6.IsEnabled = false;
-                    btn7.IsEnabled = false;
-                    btn8.IsEnabled = false;
-                    btn9.IsEnabled = false;
-                }
-                else
-                {
-                    btn0.IsEnabled = true;
-                    btn1.IsEnabled = true;
-                    btn2.IsEnabled = true;
-                    btn3.IsEnabled = true;
-                    btn4.IsEnabled = true;
-                    btn5.IsEnabled = true;
-                    btn6.IsEnabled = true;
-                    btn7.IsEnabled = true;
-                    btn8.IsEnabled = true;
-                    btn9.IsEnabled = true;
-                }
+                btn0.IsEnabled = false;
+                btn1.IsEnabled = false;
+                btn2.IsEnabled = false;
+                btn3.IsEnabled = false;
+                btn4.IsEnabled = false;
+                btn5.IsEnabled = false;
+                btn6.IsEnabled = false;
+                btn7.IsEnabled = false;
+                btn8.IsEnabled = false;
+                btn9.IsEnabled = false;
             }
+            else
+            {
+                btn0.IsEnabled = true;
+                btn1.IsEnabled = true;
+                btn2.IsEnabled = true;
+                btn3.IsEnabled = true;
+                btn4.IsEnabled = true;
+                btn5.IsEnabled = true;
+                btn6.IsEnabled = true;
+                btn7.IsEnabled = true;
+                btn8.IsEnabled = true;
+                btn9.IsEnabled = true;
+            }
+        }
+
+        private void BtnFingerPrint_Clicked(object sender, EventArgs e)
+        {
+            FingerPrint();
         }
     }
 }

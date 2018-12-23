@@ -18,11 +18,12 @@ namespace SamsonTechMobileApp.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            CrossFingerprint.SetCurrentActivityResolver(() => CrossCurrentActivity.Current.Activity);
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-            CrossFingerprint.SetCurrentActivityResolver(() => CrossCurrentActivity.Current.Activity);
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
             App.UiParent = new UIParent(this);
