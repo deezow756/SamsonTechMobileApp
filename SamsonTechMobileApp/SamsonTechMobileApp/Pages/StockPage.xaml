@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SamsonTechMobileApp.Pages.StockPage">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+            <Label Text="Stock" FontSize="30"/>
+            <ListView ItemsSource="" x:Name="listStock" ItemSelected="ListStock_ItemSelected"/>
+            <Button Text="Add Stock" x:Name="btnAddStock" Clicked="BtnAddStock_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

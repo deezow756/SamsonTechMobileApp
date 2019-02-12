@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SamsonTechMobileApp.Pages.AddStock">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+            <Label Text="Add Stock"/>
+            <Label Text="Name"/>
+            <Editor Text="" x:Name="txtName"/>
+            <Label Text="Quantity"/>
+            <Editor Text="" x:Name="txtQuantity"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button Text="Back" x:Name="btnBack" Clicked="BtnBack_Clicked"/>
+                <Button Text="Save" x:Name="btnSave" Clicked="BtnSave_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

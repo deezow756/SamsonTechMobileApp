@@ -11,6 +11,7 @@ namespace SamsonTechMobileApp
     public class FileManager
     {
         public static string ordersFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "OrderS.json");
+        public static string stocksFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Stocks.json");
         string idCountFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Ids.txt");
 
         public void SaveOrder(AddOrder addOrder, Order order)
@@ -50,6 +51,30 @@ namespace SamsonTechMobileApp
             }
         }
 
+        public void SaveStock(AddStock addStock, Stock stock)
+        {
+
+            List<Stock> lstStocks = LoadStocks().ToList<Stock>();
+
+            if (!File.Exists(stocksFilePath))
+            {
+                File.WriteAllText(stocksFilePath, JsonConvert.SerializeObject(stock));
+            }
+            else
+            {
+                lstStocks.Add(stock);
+
+                string[] jsons = new string[lstStocks.Count];
+
+                for (int i = 0; i < lstStocks.Count; i++)
+                {
+                    jsons[i] = JsonConvert.SerializeObject(lstStocks[i]);
+                }
+
+                File.WriteAllLines(stocksFilePath, jsons);
+            }
+        }
+
         public void SaveEdit(Order order)
         {
             Order[] orders = LoadOrders();
@@ -70,6 +95,26 @@ namespace SamsonTechMobileApp
             }
         }
 
+        public void SaveStockEdit(Stock stock)
+        {
+            Stock[] stocks = LoadStocks();
+
+            for (int i = 0; i < stocks.Length; i++)
+            {
+                if (stock.Name == stocks[i].Name)
+                {
+                    stocks[i] = stock;
+                    List<string> jsons = new List<string>();
+                    for (int j = 0; j < stocks.Length; j++)
+                    {
+                        jsons.Add(JsonConvert.SerializeObject(stocks[j]));
+                    }
+                    File.WriteAllLines(stocksFilePath, jsons.ToArray());
+                    break;
+                }
+            }
+        }
+
         public Order[] LoadOrders()
         {
             if (File.Exists(ordersFilePath))
@@ -83,6 +128,35 @@ namespace SamsonTechMobileApp
                 }
 
                 return lstOrders;
+            }
+            return null;
+        }
+
+        public void SaveStocks(Stock[] stocks)
+        {
+            string[] jsons = new string[stocks.Length];
+
+            for (int i = 0; i < stocks.Length; i++)
+            {
+                jsons[i] = JsonConvert.SerializeObject(stocks[i]);
+            }
+
+            File.WriteAllLines(stocksFilePath, jsons);
+        }
+
+        public Stock[] LoadStocks()
+        {
+            if (File.Exists(stocksFilePath))
+            {
+                string[] allJson = File.ReadAllLines(stocksFilePath);
+                Stock[] lstStocks = new Stock[allJson.Length];
+
+                for (int i = 0; i < allJson.Length; i++)
+                {
+                    lstStocks[i] = JsonConvert.DeserializeObject<Stock>(allJson[i]);
+                }
+
+                return lstStocks;
             }
             return null;
         }

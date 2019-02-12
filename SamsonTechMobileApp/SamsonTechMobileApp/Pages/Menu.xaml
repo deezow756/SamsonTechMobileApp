@@ -7,6 +7,7 @@
             <Label Text="Menu" HorizontalTextAlignment="Center" FontSize="50" />
             <Button Text="Display Orders" x:Name="btnDisplayOrders" Clicked="btnDisplayOrders_Clicked" FontSize="30"/>
             <Button Text="Add Order" x:Name="btnAddOrder" Clicked="btnAddOrder_Clicked" FontSize="30"/>
+            <Button Text="Stock" x:Name="btnStock" Clicked="BtnStock_Clicked" FontSize="30"/>
             <Button Text="Statistics" x:Name="btnStatistics" Clicked="btnStatistics_Clicked" FontSize="30"/>
             <ListView ItemsSource="" x:Name="listOrders" ItemSelected="listOrders_ItemSelected"/>
             <Label Text="OneDrive Options" HorizontalTextAlignment="Center" FontSize="30"/>

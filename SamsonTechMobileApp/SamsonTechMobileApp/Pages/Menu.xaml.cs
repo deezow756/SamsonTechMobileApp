@@ -56,6 +56,12 @@ namespace SamsonTechMobileApp
             this.Navigation.PushAsync(addOrder);
         }
 
+        private void BtnStock_Clicked(object sender, EventArgs e)
+        {
+            StockPage stockPage = new StockPage();
+            this.Navigation.PushAsync(stockPage);
+        }
+
         private void btnSignIn_Clicked(object sender, EventArgs e)
         {
             SignIn();
@@ -95,28 +101,10 @@ namespace SamsonTechMobileApp
             }
         }
 
-        private async void btnSync_Clicked(object sender, EventArgs e)
+        private void btnSync_Clicked(object sender, EventArgs e)
         {
             Progress.Show();
-            Stream orders;
-            try
-            {
-                orders = System.IO.File.Open(FileManager.ordersFilePath, FileMode.Open);
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error Reading File:", ex.Message, "Dismiss");
-                return;
-            }
-
-            MemoryStream ordersMS = new MemoryStream();
-            orders.CopyTo(ordersMS);
-
-            orders.Flush();
-            orders.Dispose();
-            orders.Close();
-
-            await UploadOrders(ordersMS.ToArray());
+            SaveOrdersNStocks();
         }
 
         private void FillTodayOrders()
@@ -125,19 +113,24 @@ namespace SamsonTechMobileApp
             Display display = new Display(fileManager.LoadOrders());
             display.OrdersToday(listOrders);
         }
-
-        protected override bool OnBackButtonPressed()
-        {
-            SaveOrders();
-            return base.OnBackButtonPressed();
-        }
-
-        private async void SaveOrders()
+        
+        private async void SaveOrdersNStocks()
         {
             Stream orders;
+            Stream stocks;
             try
             {
                 orders = System.IO.File.Open(FileManager.ordersFilePath, FileMode.Open);
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error Reading File:", ex.Message, "Dismiss");
+                return;
+            }
+
+            try
+            {
+                stocks = System.IO.File.Open(FileManager.stocksFilePath, FileMode.Open);
             }
             catch (Exception ex)
             {
@@ -152,7 +145,15 @@ namespace SamsonTechMobileApp
             orders.Dispose();
             orders.Close();
 
+            MemoryStream stocksMS = new MemoryStream();
+            stocks.CopyTo(stocksMS);
+
+            stocks.Flush();
+            stocks.Dispose();
+            stocks.Close();
+
             await UploadOrders(ordersMS.ToArray());
+            await UploadStocks(stocksMS.ToArray());
         }
 
         private async void TryGetOrders()
@@ -165,6 +166,19 @@ namespace SamsonTechMobileApp
             }
 
             System.IO.File.WriteAllText(FileManager.ordersFilePath, lstOrders);
+
+        }
+
+        private async void TryGetStocks()
+        {
+            Stream stocks = await GetStocks();
+            string lstStocks;
+            using (StreamReader file = new StreamReader(stocks))
+            {
+                lstStocks = file.ReadToEnd();
+            }
+
+            System.IO.File.WriteAllText(FileManager.stocksFilePath, lstStocks);
 
         }
 
@@ -240,6 +254,26 @@ namespace SamsonTechMobileApp
             return currentOrdersTextStream;
         }
 
+        private async Task<Stream> GetStocks()
+        {
+            Stream currentStocksTextStream = null;
+
+            try
+            {
+                currentStocksTextStream = await App.graphClient.Me.Drive.Root.ItemWithPath("/Documents/SamsonTech/Stock.txt").Content.Request().GetAsync();
+                Progress.Hide();
+            }
+            //If the user account is MSA (not work or school), the service will throw an exception.
+            catch (Exception e)
+            {
+                Progress.Hide();
+                await DisplayAlert("Could Not Get Stocks File From One Drive", e.Message, "Dismiss");
+                return null;
+            }
+
+            return currentStocksTextStream;
+        }
+
         private async Task UploadOrders(byte[] file)
         {
             DriveItem uploadedItem = null;
@@ -249,12 +283,29 @@ namespace SamsonTechMobileApp
                 uploadedItem = await App.graphClient.Me.Drive.Root.ItemWithPath("/Documents/SamsonTech/Orders.txt").Content.Request().PutAsync<DriveItem>(fileStream);
 
                 Progress.Hide();
-                await DisplayAlert("Synced: ", "Orders Have Successfully Been Synced", "Ok");
             }
             catch (Exception e)
             {
                 Progress.Hide();
                 await DisplayAlert("Could Not Upload Orders ", e.Message, "Dismiss");
+                return;
+            }
+        }
+
+        private async Task UploadStocks(byte[] file)
+        {
+            DriveItem uploadedItem = null;
+            try
+            {
+                Stream fileStream = new MemoryStream(file);
+                uploadedItem = await App.graphClient.Me.Drive.Root.ItemWithPath("/Documents/SamsonTech/Stock.txt").Content.Request().PutAsync<DriveItem>(fileStream);
+
+                Progress.Hide();
+            }
+            catch (Exception e)
+            {
+                Progress.Hide();
+                await DisplayAlert("Could Not Upload Stocks ", e.Message, "Dismiss");
                 return;
             }
         }

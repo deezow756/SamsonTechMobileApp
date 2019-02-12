@@ -9,10 +9,16 @@ namespace SamsonTechMobileApp
     public class Display
     {
         private Order[] lstOrders;
+        private Stock[] lstStocks;
 
         public Display(Order[] lstOrders)
         {
             this.lstOrders = lstOrders;
+        }
+
+        public Display(Stock[] lstStocks)
+        {
+            this.lstStocks = lstStocks;
         }
 
         public void AllOrders(ListView listOrders, int month, int year)
@@ -35,6 +41,18 @@ namespace SamsonTechMobileApp
             }
 
             listOrders.ItemsSource = lstItems;
+        }
+
+        public void AllStocks(ListView listStocks)
+        {
+            List<string> lstItems = new List<string>();
+
+            for (int i = 0; i < lstStocks.Length; i++)
+            {
+                lstItems.Add(lstStocks[i].Name + ": " + lstStocks[i].Quantity);
+            }
+
+            listStocks.ItemsSource = lstItems;
         }
 
         public void OrdersToday(ListView listOrders)
@@ -80,8 +98,20 @@ namespace SamsonTechMobileApp
                     viewOrders.Navigation.PushAsync(viewOrder);
                 }
             }
+        }
 
+        public void DisplayStock(StockPage stockPage, string selectedItem)
+        {
+            string[] split = selectedItem.Split(':');
 
+            for (int i = 0; i < lstStocks.Length; i++)
+            {
+                if (lstStocks[i].Name == split[0])
+                {
+                    StockInfo stockInfo = new StockInfo(lstStocks[i]);
+                    stockPage.Navigation.PushAsync(stockInfo);
+                }
+            }
         }
 
         public void MonthStats(Label txtCost, Label txtEarning, Label txtProfit, int month, int year)
