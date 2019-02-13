@@ -47,12 +47,15 @@ namespace SamsonTechMobileApp
         {
             List<string> lstItems = new List<string>();
 
-            for (int i = 0; i < lstStocks.Length; i++)
+            if (lstStocks != null)
             {
-                lstItems.Add(lstStocks[i].Name + ": " + lstStocks[i].Quantity);
-            }
+                for (int i = 0; i < lstStocks.Length; i++)
+                {
+                    lstItems.Add(lstStocks[i].Name + ": " + lstStocks[i].Quantity);
+                }
 
-            listStocks.ItemsSource = lstItems;
+                listStocks.ItemsSource = lstItems;
+            }
         }
 
         public void OrdersToday(ListView listOrders)

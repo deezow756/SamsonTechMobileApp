@@ -22,6 +22,7 @@ namespace SamsonTechMobileApp.Pages
             {
                 btnTake.IsEnabled = false;
             }
+            FillBoxes();
 		}
 
         private void FillBoxes()
@@ -48,6 +49,7 @@ namespace SamsonTechMobileApp.Pages
 
             stock.Quantity = quantity.ToString();
             btnSave.IsEnabled = true;
+            txtQuantity.Text = stock.Quantity;
         }
 
         private void BtnAdd_Clicked(object sender, EventArgs e)
@@ -61,6 +63,7 @@ namespace SamsonTechMobileApp.Pages
             stock.Quantity = quantity.ToString();
             btnTake.IsEnabled = true;
             btnSave.IsEnabled = true;
+            txtQuantity.Text = stock.Quantity;
         }
 
         private void BtnSave_Clicked(object sender, EventArgs e)

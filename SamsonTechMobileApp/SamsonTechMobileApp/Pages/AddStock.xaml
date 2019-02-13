@@ -4,10 +4,10 @@
              x:Class="SamsonTechMobileApp.Pages.AddStock">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
-            <Label Text="Add Stock"/>
-            <Label Text="Name"/>
+            <Label Text="Add Stock" HorizontalTextAlignment="Center"/>
+            <Label Text="Name" HorizontalTextAlignment="Center"/>
             <Editor Text="" x:Name="txtName"/>
-            <Label Text="Quantity"/>
+            <Label Text="Quantity" HorizontalTextAlignment="Center"/>
             <Editor Text="" x:Name="txtQuantity"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <Button Text="Back" x:Name="btnBack" Clicked="BtnBack_Clicked"/>

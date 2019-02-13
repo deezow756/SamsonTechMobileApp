@@ -52,9 +52,7 @@ namespace SamsonTechMobileApp
         }
 
         public void SaveStock(AddStock addStock, Stock stock)
-        {
-
-            List<Stock> lstStocks = LoadStocks().ToList<Stock>();
+        {           
 
             if (!File.Exists(stocksFilePath))
             {
@@ -62,6 +60,7 @@ namespace SamsonTechMobileApp
             }
             else
             {
+                List<Stock> lstStocks = LoadStocks().ToList<Stock>();
                 lstStocks.Add(stock);
 
                 string[] jsons = new string[lstStocks.Count];

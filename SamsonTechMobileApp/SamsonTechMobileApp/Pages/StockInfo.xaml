@@ -4,18 +4,18 @@
              x:Class="SamsonTechMobileApp.Pages.StockInfo">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
-            <Label Text="StockInfo"/>
-            <Label Text="Name" HorizontalTextAlignment="Center"/>
-            <Label Text="" x:Name="txtName" HorizontalTextAlignment="Center"/>
-            <Label Text="Quantity" HorizontalTextAlignment="Center"/>
-            <Label Text="" x:Name="txtQuantity" HorizontalTextAlignment="Center"/>
+            <Label Text="StockInfo" HorizontalTextAlignment="Center" FontSize="40"/>
+            <Label Text="Name" HorizontalTextAlignment="Center" FontSize="30"/>
+            <Label Text="" x:Name="txtName" HorizontalTextAlignment="Center" FontSize="20"/>
+            <Label Text="Quantity" HorizontalTextAlignment="Center" FontSize="30"/>
+            <Label Text="" x:Name="txtQuantity" HorizontalTextAlignment="Center" FontSize="20"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Button Text="-" x:Name="btnTake" Clicked="BtnTake_Clicked"/>
-                <Button Text="+" x:Name="btnAdd" Clicked="BtnAdd_Clicked"/>
+                <Button Text="-" x:Name="btnTake" Clicked="BtnTake_Clicked" FontSize="30"/>
+                <Button Text="+" x:Name="btnAdd" Clicked="BtnAdd_Clicked" FontSize="30"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Button Text="Back" x:Name="btnBack" Clicked="BtnBack_Clicked"/>
-                <Button Text="Save" x:Name="btnSave" Clicked="BtnSave_Clicked"/>
+                <Button Text="Back" x:Name="btnBack" Clicked="BtnBack_Clicked" FontSize="20"/>
+                <Button Text="Save" x:Name="btnSave" Clicked="BtnSave_Clicked" FontSize="20"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

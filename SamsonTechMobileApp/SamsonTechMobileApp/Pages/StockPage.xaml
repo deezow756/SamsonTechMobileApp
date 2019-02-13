@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SamsonTechMobileApp.Pages.StockPage">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
-            <Label Text="Stock" FontSize="30"/>
-            <ListView ItemsSource="" x:Name="listStock" ItemSelected="ListStock_ItemSelected"/>
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+            <Label Text="Stock" FontSize="40" HorizontalTextAlignment="Center"/>
+            <ListView ItemsSource="" x:Name="listStock" ItemSelected="ListStock_ItemSelected" HorizontalOptions="CenterAndExpand" />
             <Button Text="Add Stock" x:Name="btnAddStock" Clicked="BtnAddStock_Clicked"/>
         </StackLayout>
     </ContentPage.Content>

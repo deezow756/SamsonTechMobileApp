@@ -144,6 +144,13 @@ namespace SamsonTechMobileApp
             string passCode = txtPasscode.Text;
             if (passCode.Length >= 6)
             {
+                string correctPassCode = "000000";
+
+                if (passCode == correctPassCode)
+                {
+                    Menu menu = new Menu();
+                    this.Navigation.PushAsync(menu);
+                }
                 btn0.IsEnabled = false;
                 btn1.IsEnabled = false;
                 btn2.IsEnabled = false;

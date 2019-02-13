@@ -32,7 +32,7 @@ namespace SamsonTechMobileApp.Pages
 
         private void BtnAddStock_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new AddStock());
         }
     }
 }
