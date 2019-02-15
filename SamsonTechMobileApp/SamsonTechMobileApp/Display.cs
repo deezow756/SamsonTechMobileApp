@@ -51,7 +51,7 @@ namespace SamsonTechMobileApp
             {
                 for (int i = 0; i < lstStocks.Length; i++)
                 {
-                    lstItems.Add(lstStocks[i].Name + ": " + lstStocks[i].Quantity);
+                    lstItems.Add(lstStocks[i].Name);
                 }
 
                 listStocks.ItemsSource = lstItems;

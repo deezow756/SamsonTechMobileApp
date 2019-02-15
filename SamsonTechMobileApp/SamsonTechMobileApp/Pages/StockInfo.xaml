@@ -4,14 +4,10 @@
              x:Class="SamsonTechMobileApp.Pages.StockInfo">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
-            <Label Text="StockInfo" HorizontalTextAlignment="Center" FontSize="40"/>
-            <Label Text="Name" HorizontalTextAlignment="Center" FontSize="30"/>
-            <Label Text="" x:Name="txtName" HorizontalTextAlignment="Center" FontSize="20"/>
-            <Label Text="Quantity" HorizontalTextAlignment="Center" FontSize="30"/>
-            <Label Text="" x:Name="txtQuantity" HorizontalTextAlignment="Center" FontSize="20"/>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Button Text="-" x:Name="btnTake" Clicked="BtnTake_Clicked" FontSize="30"/>
-                <Button Text="+" x:Name="btnAdd" Clicked="BtnAdd_Clicked" FontSize="30"/>
+            <Label x:Name="txtName" Text="" HorizontalTextAlignment="Center" FontSize="25"/>
+            <StackLayout x:Name="Rows" Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+
+
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <Button Text="Back" x:Name="btnBack" Clicked="BtnBack_Clicked" FontSize="20"/>

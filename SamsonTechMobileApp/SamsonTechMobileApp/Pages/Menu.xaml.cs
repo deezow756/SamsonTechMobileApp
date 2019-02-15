@@ -201,6 +201,7 @@ namespace SamsonTechMobileApp
                 }
 
                 TryGetOrders();
+                TryGetStocks();
                 FillTodayOrders();
             }
             catch (Exception ex)

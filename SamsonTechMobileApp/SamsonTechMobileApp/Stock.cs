@@ -7,6 +7,7 @@ namespace SamsonTechMobileApp
     public class Stock
     {
         public string Name;
+        public string Models;
         public string Quantity;
     }
 }
