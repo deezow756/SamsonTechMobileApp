@@ -10,10 +10,7 @@
             <Button Text="Stock" x:Name="btnStock" Clicked="BtnStock_Clicked" FontSize="30"/>
             <Button Text="Statistics" x:Name="btnStatistics" Clicked="btnStatistics_Clicked" FontSize="30"/>
             <ListView ItemsSource="" x:Name="listOrders" ItemSelected="listOrders_ItemSelected"/>
-            <Label Text="OneDrive Options" HorizontalTextAlignment="Center" FontSize="30"/>
-            <Button Text="Sync Changes" x:Name="btnSync" Clicked="btnSync_Clicked" FontSize="30"/>
-            <Button Text="Sign In" x:Name="btnSignIn" Clicked="btnSignIn_Clicked" FontSize="30"/>
-            <Button Text="Sign Out" x:Name="btnSignOut" Clicked="btnSignOut_Clicked" FontSize="30"/>
+            <Button Text="Settings" x:Name="btnSettings" Clicked="BtnSettings_Clicked" FontSize="30"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

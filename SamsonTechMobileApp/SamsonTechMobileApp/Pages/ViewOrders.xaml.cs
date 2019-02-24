@@ -51,5 +51,37 @@ namespace SamsonTechMobileApp.Pages
                 display.AllOrders(listOrders, lstMonth.SelectedIndex + 1, lstYear.SelectedIndex + 2018);
             }
         }
+
+        private void btnPrevMon_Clicked(object sender, EventArgs e)
+        {
+            if (lstMonth.SelectedIndex == 0)
+            {
+                if (lstYear.SelectedIndex > 0)
+                {
+                    lstYear.SelectedIndex = lstYear.SelectedIndex - 1;
+                    lstMonth.SelectedIndex = 11;
+                }
+            }
+            else
+            {
+                lstMonth.SelectedIndex = lstMonth.SelectedIndex - 1;
+            }
+        }
+
+        private void btnNextMon_Clicked(object sender, EventArgs e)
+        {
+            if (lstMonth.SelectedIndex == 11)
+            {
+                if (lstYear.SelectedIndex < 3)
+                {
+                    lstYear.SelectedIndex = lstYear.SelectedIndex + 1;
+                    lstMonth.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                lstMonth.SelectedIndex = lstMonth.SelectedIndex + 1;
+            }
+        }
     }
 }

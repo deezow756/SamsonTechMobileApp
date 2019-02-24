@@ -37,7 +37,11 @@
                     </Picker.SelectedIndex>
                 </Picker>
             </StackLayout>
-            <ListView ItemsSource="" x:Name="listOrders" ItemSelected="listOrders_ItemSelected"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button Text="Prev Mon" x:Name="btnPrevMon" Clicked="btnPrevMon_Clicked"/>
+                <Button Text="Next Mon" x:Name="btnNextMon" Clicked="btnNextMon_Clicked"/>
+            </StackLayout>
+            <ListView ItemsSource="" x:Name="listOrders" ItemSelected="listOrders_ItemSelected"/>            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
