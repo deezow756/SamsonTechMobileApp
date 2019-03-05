@@ -75,6 +75,7 @@ namespace SamsonTechMobileApp.Pages
                 if (split.Length == 1)
                 {
                     Label label1 = new Label();
+                    label1.TextColor = Color.LimeGreen;
                     label1.Text = split[0] + " " + csplit[0];
 
                     deviceLabels.Children.Add(label1);
@@ -85,6 +86,9 @@ namespace SamsonTechMobileApp.Pages
                     label1.Text = split[0] + " " + csplit[0];
                     Label label2 = new Label();
                     label2.Text = split[1] + " " + csplit[1];
+
+                    label1.TextColor = Color.LimeGreen;
+                    label2.TextColor = Color.LimeGreen;
 
                     deviceLabels.Children.Add(label1);
                     deviceLabels.Children.Add(label2);
@@ -97,6 +101,10 @@ namespace SamsonTechMobileApp.Pages
                     label2.Text = split[1] + " " + csplit[1];
                     Label label3 = new Label();
                     label3.Text = split[2] + " " + csplit[2];
+
+                    label1.TextColor = Color.LimeGreen;
+                    label2.TextColor = Color.LimeGreen;
+                    label3.TextColor = Color.LimeGreen;
 
                     deviceLabels.Children.Add(label1);
                     deviceLabels.Children.Add(label2);

@@ -22,17 +22,18 @@ namespace SamsonTechMobileApp.Pages
         {
             FileManager fileManager = new FileManager();
             display = new Display(fileManager.LoadStocks());
-            display.AllStocks(listStock);
-        }
-
-        private void ListStock_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            display.DisplayStock(this, listStock.SelectedItem.ToString());
+            display.AllStocks(liststock);
         }
 
         private void BtnAddStock_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new AddStock());
+        }
+
+        private void TextCell_Tapped(object sender, EventArgs e)
+        {
+            var tc = ((TextCell) sender);
+            display.DisplayStock(this, tc.Text);
         }
     }
 }

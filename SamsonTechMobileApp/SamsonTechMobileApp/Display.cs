@@ -27,7 +27,9 @@ namespace SamsonTechMobileApp
             lstOrders = fileManager.SortOrders(lstOrders);
             fileManager.SaveOrders(lstOrders);
 
-            List<string> lstItems = new List<string>();
+            var lstItems = new List<ViewOrdersModel>();
+
+            //List<string> lstItems = new List<string>();
 
             for (int i = 0; i < lstOrders.Length; i++)
             {
@@ -35,7 +37,7 @@ namespace SamsonTechMobileApp
                 {
                     if (lstOrders[i].Date.Month == month)
                     {
-                        lstItems.Add(lstOrders[i].ID + ": " + lstOrders[i].Date.Day + "/" + lstOrders[i].Date.Month + "/" + lstOrders[i].Date.Year + ", " + lstOrders[i].Name + ", Completed: " + lstOrders[i].Completed);
+                        lstItems.Add(new ViewOrdersModel() { OrderDetails = lstOrders[i].ID + ": " + lstOrders[i].Date.Day + "/" + lstOrders[i].Date.Month + "/" + lstOrders[i].Date.Year + ", " + lstOrders[i].Name + ", Completed: " + lstOrders[i].Completed });
                     }
                 }
             }
@@ -45,16 +47,9 @@ namespace SamsonTechMobileApp
 
         public void AllStocks(ListView listStocks)
         {
-            List<string> lstItems = new List<string>();
-
             if (lstStocks != null)
-            {
-                for (int i = 0; i < lstStocks.Length; i++)
-                {
-                    lstItems.Add(lstStocks[i].Name);
-                }
-
-                listStocks.ItemsSource = lstItems;
+            {               
+                listStocks.ItemsSource = lstStocks;
             }
         }
 
@@ -62,7 +57,7 @@ namespace SamsonTechMobileApp
         {
             DateTime dateTime = DateTime.Today;
 
-            List<string> lstItems = new List<string>();
+            var lstItems = new List<ViewOrdersModel>();
 
             for (int i = 0; i < lstOrders.Length; i++)
             {
@@ -72,7 +67,7 @@ namespace SamsonTechMobileApp
                     {
                         if (lstOrders[i].Date.Day == dateTime.Day)
                         {
-                            lstItems.Add(lstOrders[i].ID + ": " + lstOrders[i].Date.Day + "/" + lstOrders[i].Date.Month + "/" + lstOrders[i].Date.Year + ", " + lstOrders[i].Name + ", Completed: " + lstOrders[i].Completed);
+                            lstItems.Add( new ViewOrdersModel() { OrderDetails = lstOrders[i].ID + ": " + lstOrders[i].Date.Day + "/" + lstOrders[i].Date.Month + "/" + lstOrders[i].Date.Year + ", " + lstOrders[i].Name + ", Completed: " + lstOrders[i].Completed});
                         }
                     }
                 }
@@ -80,7 +75,8 @@ namespace SamsonTechMobileApp
 
             if (lstItems.Count == 0)
             {
-                lstItems.Add("No Orders Today");
+
+                lstItems.Add( new ViewOrdersModel() { OrderDetails = "No Orders Today" });
                 listOrders.ItemsSource = lstItems;
             }
             else

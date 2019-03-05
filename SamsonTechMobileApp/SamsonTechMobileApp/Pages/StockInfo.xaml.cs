@@ -58,47 +58,5 @@ namespace SamsonTechMobileApp.Pages
             this.Navigation.PopAsync();
         }
 
-        private void BtnBack_Clicked(object sender, EventArgs e)
-        {
-            this.Navigation.PopAsync();
-        }
-
-        //private void BtnTake_Clicked(object sender, EventArgs e)
-        //{
-        //    int quantity = 0;
-        //    try { quantity = int.Parse(stock.Quantity); }
-        //    catch (Exception ex) { DisplayAlert("Error: ", ex.Message, "Dismiss"); }
-
-        //    if (quantity > 0)
-        //    {
-        //        quantity--;
-        //    }
-
-        //    if (quantity == 0)
-        //    {
-        //        btnTake.IsEnabled = false;
-        //    }
-
-        //    stock.Quantity = quantity.ToString();
-        //    btnSave.IsEnabled = true;
-        //    txtQuantity.Text = stock.Quantity;
-        //}
-
-        //private void BtnAdd_Clicked(object sender, EventArgs e)
-        //{
-        //    int quantity = 0;
-        //    try { quantity = int.Parse(stock.Quantity); }
-        //    catch (Exception ex) { DisplayAlert("Error: ", ex.Message, "Dismiss"); }
-
-        //    quantity++;
-
-        //    stock.Quantity = quantity.ToString();
-        //    btnTake.IsEnabled = true;
-        //    btnSave.IsEnabled = true;
-        //    txtQuantity.Text = stock.Quantity;
-        //}
-
-
-
     }
 }

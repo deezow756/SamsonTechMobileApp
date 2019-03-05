@@ -1,12 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SamsonTechMobileApp.Pages.StockPage">
+             x:Class="SamsonTechMobileApp.Pages.StockPage"
+             BackgroundImage="bg.png">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" HorizontalOptions="Center">
-            <Label Text="Stock" FontSize="40" HorizontalTextAlignment="Center"/>
-            <ListView ItemsSource="" x:Name="listStock" ItemSelected="ListStock_ItemSelected" HorizontalOptions="CenterAndExpand" />
-            <Button Text="Add Stock" x:Name="btnAddStock" Clicked="BtnAddStock_Clicked"/>
+            <Label Text="Stock" FontSize="40" HorizontalTextAlignment="Center" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+            <ListView x:Name="liststock" HorizontalOptions="CenterAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Tapped="TextCell_Tapped" Text="{Binding Name}" TextColor="LimeGreen"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Add Stock" x:Name="btnAddStock" Clicked="BtnAddStock_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

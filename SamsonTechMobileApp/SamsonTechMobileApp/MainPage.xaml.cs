@@ -25,7 +25,7 @@ namespace SamsonTechMobileApp
             if (auth.Authenticated)
             {
                 Progress.Show();
-                Menu menu = new Menu();
+                Menu menu = new Menu() { Title = "Menu"};
                 await Navigation.PushAsync(menu);
                 Progress.Hide();
             }
@@ -122,60 +122,61 @@ namespace SamsonTechMobileApp
                 CheckPassCodeCount();
             }
         }
-        private void btnSubmit_Clicked(object sender, EventArgs e)
+
+        private async void CheckPassCodeCount()
         {
             string passCode = txtPasscode.Text;
-            string correctPassCode = "000000";
-
-            if (passCode == correctPassCode)
+            if (passCode.Length == 4)
             {
-                Menu menu = new Menu();
-                this.Navigation.PushAsync(menu);
-            }
-            else
-            {
-                DisplayAlert("Incorrect","Incorrect Password","Ok");
-                txtPasscode.Text = "";
-            }
-        }
-
-        private void CheckPassCodeCount()
-        {
-            string passCode = txtPasscode.Text;
-            if (passCode.Length >= 6)
-            {
-                string correctPassCode = "000000";
+                string correctPassCode = "0000";
 
                 if (passCode == correctPassCode)
                 {
-                    Menu menu = new Menu();
-                    this.Navigation.PushAsync(menu);
+                    ChangeButtonsIsEnabled(false);
+                    await Task.Delay(50);                    
+                    txtPasscode.Text = "";
+                    Menu menu = new Menu() { Title = "Menu" };
+                    await Navigation.PushAsync(menu);
+                    ChangeButtonsIsEnabled(true);
                 }
-                btn0.IsEnabled = false;
-                btn1.IsEnabled = false;
-                btn2.IsEnabled = false;
-                btn3.IsEnabled = false;
-                btn4.IsEnabled = false;
-                btn5.IsEnabled = false;
-                btn6.IsEnabled = false;
-                btn7.IsEnabled = false;
-                btn8.IsEnabled = false;
-                btn9.IsEnabled = false;
-            }
-            else
-            {
-                btn0.IsEnabled = true;
-                btn1.IsEnabled = true;
-                btn2.IsEnabled = true;
-                btn3.IsEnabled = true;
-                btn4.IsEnabled = true;
-                btn5.IsEnabled = true;
-                btn6.IsEnabled = true;
-                btn7.IsEnabled = true;
-                btn8.IsEnabled = true;
-                btn9.IsEnabled = true;
-            }
+                else
+                {
+                    ChangeButtonsIsEnabled(false);
+                    Shake();
+                    await Task.Delay(500);
+                    ChangeButtonsIsEnabled(true);
+                    txtPasscode.Text = "";
+                }
+
+            }            
         }
+
+        private void ChangeButtonsIsEnabled(bool change)
+        {
+            btn0.IsEnabled = change;
+            btn1.IsEnabled = change;
+            btn2.IsEnabled = change;
+            btn3.IsEnabled = change;
+            btn4.IsEnabled = change;
+            btn5.IsEnabled = change;
+            btn6.IsEnabled = change;
+            btn7.IsEnabled = change;
+            btn8.IsEnabled = change;
+            btn9.IsEnabled = change;
+        }
+
+        async void Shake()
+        {
+            uint timeout = 50;
+            await line.TranslateTo(-15, 0, timeout);
+            await line.TranslateTo(15, 0, timeout);
+            await line.TranslateTo(-10, 0, timeout);
+            await line.TranslateTo(10, 0, timeout);
+            await line.TranslateTo(-5, 0, timeout);
+            await line.TranslateTo(5, 0, timeout);
+            line.TranslationX = 0;
+        }
+
 
         private void BtnFingerPrint_Clicked(object sender, EventArgs e)
         {

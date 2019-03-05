@@ -70,9 +70,10 @@ namespace SamsonTechMobileApp
             this.Navigation.PushAsync(stockPage);
         }
 
-        private void listOrders_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void TextCell_Tapped(object sender, EventArgs e)
         {
-            string order = listOrders.SelectedItem.ToString();
+            var tc = ((TextCell) sender);
+            string order = tc.Text;
             string[] split = order.Split(':');
 
             FileManager fileManager = new FileManager();
@@ -82,7 +83,7 @@ namespace SamsonTechMobileApp
             {
                 if (lstOrders[i].ID == split[0])
                 {
-                    ViewOrder viewOrder = new ViewOrder(lstOrders[i]);
+                    ViewOrder viewOrder = new ViewOrder(lstOrders[i]) { Title = "Order"};
                     Navigation.PushAsync(viewOrder);
                 }
             }

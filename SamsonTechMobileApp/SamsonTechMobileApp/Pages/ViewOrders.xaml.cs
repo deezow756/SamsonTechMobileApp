@@ -31,9 +31,11 @@ namespace SamsonTechMobileApp.Pages
             display.AllOrders(listOrders, lstMonth.SelectedIndex + 1, lstYear.SelectedIndex + 2018);
         }
 
-        private void listOrders_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+
+        private void TextCell_Tapped(object sender, EventArgs e)
         {
-            display.DisplayOrder(this, listOrders.SelectedItem.ToString());
+            var tc = ((TextCell)sender);
+            display.DisplayOrder(this, tc.Text);
         }
 
         private void lstMonth_SelectedIndexChanged(object sender, EventArgs e)
@@ -83,5 +85,6 @@ namespace SamsonTechMobileApp.Pages
                 lstMonth.SelectedIndex = lstMonth.SelectedIndex + 1;
             }
         }
+
     }
 }

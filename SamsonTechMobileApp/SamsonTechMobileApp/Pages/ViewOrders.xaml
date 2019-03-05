@@ -1,12 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SamsonTechMobileApp.Pages.ViewOrders">
+             x:Class="SamsonTechMobileApp.Pages.ViewOrders"
+             BackgroundImage="bg.png">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
-            <Label Text="Filter" HorizontalTextAlignment="Center" FontSize="30"/>
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">            
+            <Label Text="Filter" HorizontalTextAlignment="Center" FontSize="30" TextColor="LimeGreen"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Picker Title="" x:Name="lstMonth" WidthRequest="150" SelectedIndexChanged="lstMonth_SelectedIndexChanged" TextColor="Black">
+                <ImageButton Source="left.png" x:Name="btnPrevMon" Clicked="btnPrevMon_Clicked" BackgroundColor="Transparent" WidthRequest="60" HeightRequest="60"/>
+                <Picker Title="" x:Name="lstMonth" WidthRequest="100" SelectedIndexChanged="lstMonth_SelectedIndexChanged" TextColor="LimeGreen">
                     <Picker.Items>
                         <x:String>Jan</x:String>
                         <x:String>Feb</x:String>
@@ -25,7 +27,7 @@
                         -1
                     </Picker.SelectedIndex>
                 </Picker>
-                <Picker Title="" x:Name="lstYear" WidthRequest="150" SelectedIndexChanged="lstYear_SelectedIndexChanged" TextColor="Black">
+                <Picker Title="" x:Name="lstYear" WidthRequest="100" SelectedIndexChanged="lstYear_SelectedIndexChanged" TextColor="LimeGreen">
                     <Picker.Items>
                         <x:String>2018</x:String>
                         <x:String>2019</x:String>
@@ -36,12 +38,15 @@
                         -1
                     </Picker.SelectedIndex>
                 </Picker>
+                <ImageButton Source="right.png" x:Name="btnNextMon" Clicked="btnNextMon_Clicked" BackgroundColor="Transparent" WidthRequest="60" HeightRequest="60"/>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Button Text="Prev Mon" x:Name="btnPrevMon" Clicked="btnPrevMon_Clicked"/>
-                <Button Text="Next Mon" x:Name="btnNextMon" Clicked="btnNextMon_Clicked"/>
-            </StackLayout>
-            <ListView ItemsSource="" x:Name="listOrders" ItemSelected="listOrders_ItemSelected"/>            
+            <ListView x:Name="listOrders">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Tapped="TextCell_Tapped" Text="{Binding OrderDetails}" TextColor="LimeGreen"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -13,41 +13,55 @@ namespace SamsonTechMobileApp
         public string StockQuantity;
 
         public Label Name = new Label();
-        public StackLayout newButtons = new StackLayout();
+        public StackLayout section = new StackLayout();
+        public StackLayout view = new StackLayout();
         public Label Quantity = new Label();
-        public Button plus = new Button();
-        public Button take = new Button();
+        public ImageButton plus = new ImageButton();
+        public ImageButton take = new ImageButton();
 
         public Row(StockInfo stockInfo, string name, string quantity, StackLayout Rows)
         {
             Info = stockInfo;
-            
+
+            section.Orientation = StackOrientation.Horizontal;
+            section.HorizontalOptions = LayoutOptions.CenterAndExpand;
+
+            take.Source = "btnMinus";
+            take.WidthRequest = 40;
+            take.HeightRequest = 40;
+            take.BackgroundColor = Color.Transparent;
+            take.Clicked += TakeOnClicked;
+            if (int.Parse(quantity) == 0) { take.IsEnabled = false; }
+            section.Children.Add(take);
+
+            view.Orientation = StackOrientation.Vertical;
+            view.VerticalOptions = LayoutOptions.CenterAndExpand;
+
             Name.Text = name;
             Name.FontSize = 20;
             Name.HorizontalTextAlignment = TextAlignment.Center;
-            Rows.Children.Add(Name);
+            Name.TextColor = Color.LimeGreen;
+            Name.BackgroundColor = Color.Transparent;
+            view.Children.Add(Name);
 
             StockQuantity = quantity;
             Quantity.Text = quantity;
             Quantity.FontSize = 15;
             Quantity.HorizontalTextAlignment = TextAlignment.Center;
-            Rows.Children.Add(Quantity);
+            Quantity.TextColor = Color.LimeGreen;
+            Quantity.BackgroundColor = Color.Transparent;
+            view.Children.Add(Quantity);
 
-            newButtons.Orientation = StackOrientation.Horizontal;
-            newButtons.HorizontalOptions = LayoutOptions.CenterAndExpand;
-            Rows.Children.Add(newButtons);
+            section.Children.Add(view);
 
-            take.Text = "-";
-            take.FontSize = 20;
-            take.Clicked += TakeOnClicked;
-            if (int.Parse(quantity) == 0) { take.IsEnabled = false; }
-            newButtons.Children.Add(take);
-
-            plus.Text = "+";
-            plus.FontSize = 20;
+            plus.Source = "btnPlus";
+            plus.WidthRequest = 40;
+            plus.HeightRequest = 40;
+            plus.BackgroundColor = Color.Transparent;
             plus.Clicked += PlusOnClicked;
-            newButtons.Children.Add(plus);          
-            
+            section.Children.Add(plus);
+
+            Rows.Children.Add(section);
         }
 
         private void PlusOnClicked(object sender, EventArgs e)

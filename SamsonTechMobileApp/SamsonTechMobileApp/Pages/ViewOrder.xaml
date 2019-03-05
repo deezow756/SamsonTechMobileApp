@@ -1,33 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SamsonTechMobileApp.Pages.ViewOrder">
+             x:Class="SamsonTechMobileApp.Pages.ViewOrder"
+             BackgroundImage="bg.png">
     <ContentPage.Content>
+
         <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
-            <Label Text="Name:" HorizontalTextAlignment="Center"/>
-            <Label Text="" x:Name="txtName" HorizontalTextAlignment="Center"/>
-            <Label Text="Contact:" HorizontalTextAlignment="Center"/>
-            <Label Text="" x:Name="txtContact" HorizontalTextAlignment="Center"/>
-            <Label Text="Date:" HorizontalTextAlignment="Center"/>
-            <Label Text="" x:Name="txtDate" HorizontalTextAlignment="Center"/>
-            <Label Text="Device/Devices:" HorizontalTextAlignment="Center"/>
+            <Label Text="Name:" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="30"/>
+            <Label Text="" x:Name="txtName" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="20"/>
+            <Label Text="Contact:" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="30"/>
+            <Label Text="" x:Name="txtContact" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="20"/>
+            <Label Text="Date:" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="30"/>
+            <Label Text="" x:Name="txtDate" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="20"/>
+            <Label Text="Device/Devices:" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="30"/>
             <StackLayout Orientation="Vertical" x:Name="deviceLabels" HorizontalOptions="CenterAndExpand">
 
             </StackLayout>
-            <Label Text="Reason:" HorizontalTextAlignment="Center"/>
-            <Label Text="" x:Name="txtReason" HorizontalTextAlignment="Center"/>
-            <Label Text="Price:" HorizontalTextAlignment="Center"/>
-            <Label Text="" x:Name="txtPrice" HorizontalTextAlignment="Center"/>
-            <Label Text="Part:" HorizontalTextAlignment="Center"/>
-            <Label Text="" x:Name="txtPart" HorizontalTextAlignment="Center"/>
-            <Label Text="Cost:" HorizontalTextAlignment="Center"/>
-            <Label Text="" x:Name="txtCost" HorizontalTextAlignment="Center"/>
-            <Label Text="Completed:" HorizontalTextAlignment="Center"/>
-            <Label Text="" x:Name="txtCompleted" HorizontalTextAlignment="Center"/>
+            <Label Text="Reason:" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="30"/>
+            <Label Text="" x:Name="txtReason" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="20"/>
+            <Label Text="Price:" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="30"/>
+            <Label Text="" x:Name="txtPrice" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="20"/>
+            <Label Text="Part:" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="30"/>
+            <Label Text="" x:Name="txtPart" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="20"/>
+            <Label Text="Cost:" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="30"/>
+            <Label Text="" x:Name="txtCost" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="20"/>
+            <Label Text="Completed:" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="30"/>
+            <Label Text="" x:Name="txtCompleted" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="20"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Button Text="Delete" x:Name="btnDelete" Clicked="btnDelete_Clicked"/>
-                <Button Text="Edit" x:Name="btnEdit" Clicked="btnEdit_Clicked"/>
-                <Button Text="Complete" x:Name="btnComplete" Clicked="btnComplete_Clicked"/>
+                <Button Text="Delete" x:Name="btnDelete" Clicked="btnDelete_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
+                <Button Text="Edit" x:Name="btnEdit" Clicked="btnEdit_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
+                <Button Text="Complete" x:Name="btnComplete" Clicked="btnComplete_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

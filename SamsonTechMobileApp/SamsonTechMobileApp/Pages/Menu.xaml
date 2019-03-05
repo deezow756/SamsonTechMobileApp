@@ -1,16 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SamsonTechMobileApp.Menu">
+             x:Class="SamsonTechMobileApp.Menu"
+             BackgroundImage="bg.png">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="CenterAndExpand">
-            <Label Text="Menu" HorizontalTextAlignment="Center" FontSize="50" />
-            <Button Text="Display Orders" x:Name="btnDisplayOrders" Clicked="btnDisplayOrders_Clicked" FontSize="30"/>
-            <Button Text="Add Order" x:Name="btnAddOrder" Clicked="btnAddOrder_Clicked" FontSize="30"/>
-            <Button Text="Stock" x:Name="btnStock" Clicked="BtnStock_Clicked" FontSize="30"/>
-            <Button Text="Statistics" x:Name="btnStatistics" Clicked="btnStatistics_Clicked" FontSize="30"/>
-            <ListView ItemsSource="" x:Name="listOrders" ItemSelected="listOrders_ItemSelected"/>
-            <Button Text="Settings" x:Name="btnSettings" Clicked="BtnSettings_Clicked" FontSize="30"/>
+        <StackLayout HorizontalOptions="CenterAndExpand" Spacing="10">
+            <Button Text="Display Orders" x:Name="btnDisplayOrders" Clicked="btnDisplayOrders_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
+            <Button Text="Add Order" x:Name="btnAddOrder" Clicked="btnAddOrder_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
+            <Button Text="Stock" x:Name="btnStock" Clicked="BtnStock_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
+            <Button Text="Statistics" x:Name="btnStatistics" Clicked="btnStatistics_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
+            <ListView ItemsSource="" x:Name="listOrders">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Tapped="TextCell_Tapped" Text="{Binding OrderDetails}" TextColor="LimeGreen"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="Settings" x:Name="btnSettings" Clicked="BtnSettings_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
