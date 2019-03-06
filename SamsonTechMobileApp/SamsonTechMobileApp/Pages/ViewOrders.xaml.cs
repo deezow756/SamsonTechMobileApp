@@ -35,6 +35,7 @@ namespace SamsonTechMobileApp.Pages
         private void TextCell_Tapped(object sender, EventArgs e)
         {
             var tc = ((TextCell)sender);
+            listOrders.SelectedItem = null;
             display.DisplayOrder(this, tc.Text);
         }
 

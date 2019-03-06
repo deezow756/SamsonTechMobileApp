@@ -5,10 +5,70 @@
              BackgroundImage="bg.png">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="CenterAndExpand" Spacing="10">
-            <Button Text="Display Orders" x:Name="btnDisplayOrders" Clicked="btnDisplayOrders_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
-            <Button Text="Add Order" x:Name="btnAddOrder" Clicked="btnAddOrder_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
-            <Button Text="Stock" x:Name="btnStock" Clicked="BtnStock_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
-            <Button Text="Statistics" x:Name="btnStatistics" Clicked="btnStatistics_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
+            <Button Text="Display Orders" x:Name="btnDisplayOrders" Clicked="btnDisplayOrders_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
+            <Button Text="Add Order" x:Name="btnAddOrder" Clicked="btnAddOrder_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
+            <Button Text="Stock" x:Name="btnStock" Clicked="BtnStock_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
+            <Button Text="Statistics" x:Name="btnStatistics" Clicked="btnStatistics_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
             <ListView ItemsSource="" x:Name="listOrders">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -17,7 +77,22 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Button Text="Settings" x:Name="btnSettings" Clicked="BtnSettings_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
+            <Button Text="Settings" x:Name="btnSettings" Clicked="BtnSettings_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

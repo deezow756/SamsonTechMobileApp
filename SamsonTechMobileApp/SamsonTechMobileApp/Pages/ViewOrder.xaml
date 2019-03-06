@@ -27,9 +27,54 @@
             <Label Text="Completed:" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="30"/>
             <Label Text="" x:Name="txtCompleted" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="20"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Button Text="Delete" x:Name="btnDelete" Clicked="btnDelete_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
-                <Button Text="Edit" x:Name="btnEdit" Clicked="btnEdit_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
-                <Button Text="Complete" x:Name="btnComplete" Clicked="btnComplete_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
+                <Button Text="Delete" x:Name="btnDelete" Clicked="btnDelete_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.8"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Button>
+                <Button Text="Edit" x:Name="btnEdit" Clicked="btnEdit_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.8"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Button>
+                <Button Text="Complete" x:Name="btnComplete" Clicked="btnComplete_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.8"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

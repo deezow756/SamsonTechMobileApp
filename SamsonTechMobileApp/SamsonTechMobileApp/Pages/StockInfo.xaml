@@ -4,14 +4,29 @@
              x:Class="SamsonTechMobileApp.Pages.StockInfo"
              BackgroundImage="bg.png">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
-            <Label x:Name="txtName" Text="" HorizontalTextAlignment="Center" FontSize="25" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-            <StackLayout x:Name="Rows" Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" Spacing="10">
+            <Label x:Name="txtName" Text="" HorizontalTextAlignment="Center" FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+            <StackLayout x:Name="Rows" Orientation="Vertical" HorizontalOptions="CenterAndExpand" Spacing="10">
 
 
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Button Text="Save" x:Name="btnSave" Clicked="BtnSave_Clicked" FontSize="20" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
+                <Button Text="Save" x:Name="btnSave" Clicked="BtnSave_Clicked" FontSize="20" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.8"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

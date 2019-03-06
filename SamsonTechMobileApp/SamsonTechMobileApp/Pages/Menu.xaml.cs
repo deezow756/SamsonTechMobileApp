@@ -75,6 +75,7 @@ namespace SamsonTechMobileApp
         private void TextCell_Tapped(object sender, EventArgs e)
         {
             var tc = ((TextCell) sender);
+            listOrders.SelectedItem = null;
             string order = tc.Text;
             string[] split = order.Split(':');
 

@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SamsonTechMobileApp.Pages.ViewStatistics">
+             x:Class="SamsonTechMobileApp.Pages.ViewStatistics"
+             BackgroundImage="bg.png">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Filter" HorizontalTextAlignment="Center" FontSize="40"/>
+            <Label Text="Filter" HorizontalTextAlignment="Center" FontSize="40" TextColor="LimeGreen" BackgroundColor="Transparent"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Picker Title="" x:Name="lstMonth" WidthRequest="150" SelectedIndexChanged="lstMonth_SelectedIndexChanged">
+                <Picker Title="" x:Name="lstMonth" WidthRequest="150" SelectedIndexChanged="lstMonth_SelectedIndexChanged" TextColor="LimeGreen" BackgroundColor="Transparent">
                     <Picker.Items>
                         <x:String>Jan</x:String>
                         <x:String>Feb</x:String>
@@ -25,7 +26,7 @@
                         -1
                     </Picker.SelectedIndex>
                 </Picker>
-                <Picker Title="" x:Name="lstYear" WidthRequest="150" SelectedIndexChanged="lstYear_SelectedIndexChanged">
+                <Picker Title="" x:Name="lstYear" WidthRequest="150" SelectedIndexChanged="lstYear_SelectedIndexChanged" TextColor="LimeGreen" BackgroundColor="Transparent">
                     <Picker.Items>
                         <x:String>2018</x:String>
                         <x:String>2019</x:String>
@@ -37,35 +38,65 @@
                     </Picker.SelectedIndex>
                 </Picker>
             </StackLayout>
-            <Label Text="Month Stats" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontSize="40"/>
+            <Label Text="Month Stats" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontSize="40" TextColor="LimeGreen" BackgroundColor="Transparent"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Label Text="Total Cost: " FontSize="30"/>
-                <Label x:Name="txtMonTotalCost" FontSize="30"/>
+                <Label Text="Total Cost: " FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+                <Label x:Name="txtMonTotalCost" FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Label Text="Total Earnings: " FontSize="30"/>
-                <Label x:Name="txtMonTotalEarnings" FontSize="30"/>
+                <Label Text="Total Earnings: " FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+                <Label x:Name="txtMonTotalEarnings" FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Label Text="Net Profit: " FontSize="30"/>
-                <Label x:Name="txtMonNetProfit" FontSize="30"/>
+                <Label Text="Net Profit: " FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+                <Label x:Name="txtMonNetProfit" FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Button Text="Prev Mon" x:Name="btnPrevMon" Clicked="btnPrevMon_Clicked"/>
-                <Button Text="Next Mon" x:Name="btnNextMon" Clicked="btnNextMon_Clicked"/>
+                <ImageButton Source="left.png" x:Name="btnPrevMon" Clicked="btnPrevMon_Clicked" BackgroundColor="Transparent">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.8"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
+                <ImageButton Source="right.png" x:Name="btnNextMon" Clicked="btnNextMon_Clicked" BackgroundColor="Transparent">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.8"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
             </StackLayout>
-            <Label Text="Year Stats" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontSize="40"/>
+            <Label Text="Year Stats" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontSize="40" TextColor="LimeGreen" BackgroundColor="Transparent"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Label Text="Total Cost: " FontSize="30"/>
-                <Label x:Name="txtYearTotalCost" FontSize="30"/>
+                <Label Text="Total Cost: " FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+                <Label x:Name="txtYearTotalCost" FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Label Text="Total Earnings: " FontSize="30"/>
-                <Label x:Name="txtYearTotalEarnings" FontSize="30"/>
+                <Label Text="Total Earnings: " FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+                <Label x:Name="txtYearTotalEarnings" FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Label Text="Net Profit: " FontSize="30"/>
-                <Label x:Name="txtYearNetProfit" FontSize="30"/>
+                <Label Text="Net Profit: " FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+                <Label x:Name="txtYearNetProfit" FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

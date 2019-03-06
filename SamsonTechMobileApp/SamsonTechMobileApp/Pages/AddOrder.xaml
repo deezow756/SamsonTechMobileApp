@@ -4,7 +4,7 @@
              x:Class="SamsonTechMobileApp.Pages.AddOrder"
              BackgroundImage="bg.png">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <Label Text="Name:" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="LimeGreen" BackgroundColor="Transparent" />
                 <Editor Text="" x:Name="txtName" WidthRequest="300" AutoSize="TextChanges" TextColor="LimeGreen" BackgroundColor="Transparent" PlaceholderColor="LimeGreen"/>
@@ -66,8 +66,38 @@
                 <Editor Text="" x:Name="txtCost" WidthRequest="200" AutoSize="TextChanges" TextColor="LimeGreen" BackgroundColor="Transparent" PlaceholderColor="LimeGreen"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Button Text="Save" x:Name="btnSave" Clicked="btnSave_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderRadius="1"/>
-                <Button Text="Cancel" x:Name="btnCancel" Clicked="btnCancel_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderRadius="1"/>
+                <Button Text="Save" x:Name="btnSave" Clicked="btnSave_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.8"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Button>
+                <Button Text="Cancel" x:Name="btnCancel" Clicked="btnCancel_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.8"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -1,13 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SamsonTechMobileApp.Pages.Settings">
+             x:Class="SamsonTechMobileApp.Pages.Settings"
+             BackgroundImage="bg.png">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Settings" HorizontalTextAlignment="Center" FontSize="50" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-            <Label Text="OneDrive Options" HorizontalTextAlignment="Center" FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-            <Button Text="Sign In" x:Name="btnSignIn" Clicked="btnSignIn_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderRadius="1"/>
-            <Button Text="Sign Out" x:Name="btnSignOut" Clicked="btnSignOut_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderRadius="1"/>
+            <Label Text="OneDrive Status" HorizontalTextAlignment="Center" FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+            <Label x:Name="txtStatus" Text="" HorizontalTextAlignment="Center" FontSize="20" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+            <Button Text="Sign In" x:Name="btnSignIn" Clicked="btnSignIn_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderRadius="1">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
+            <Button Text="Sign Out" x:Name="btnSignOut" Clicked="btnSignOut_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderRadius="1">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

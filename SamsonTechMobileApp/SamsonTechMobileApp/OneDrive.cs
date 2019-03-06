@@ -24,16 +24,11 @@ namespace SamsonTechMobileApp
         IEnumerable<IAccount> accounts;
 
         Menu menu;
-        Settings settings;
+        public Settings settings;
 
         public OneDrive(Menu menu)
         {
             this.menu = menu;
-        }
-
-        public OneDrive(Settings settings)
-        {
-            this.settings = settings;
         }
 
         async void DisplayMessage(string title, string message, string ok)
@@ -75,24 +70,31 @@ namespace SamsonTechMobileApp
             catch (Exception ex)
             {
                 Progress.Hide();
+                SignedIn = false;
                 DisplayMessage("Could Not Sign In: ", ex.Message, "Dismiss");
             }
         }
 
         public async void SignOut()
         {
-            var result = await settings.DisplayAlert("Warning!!", "Are You Sure You Want To Sign Out", "Yes", "No");
-
-            if (result)
+            try
             {
-                accounts = await App.PCA.GetAccountsAsync();
-                while (accounts.Any())
+                var result = await settings.DisplayAlert("Warning!!", "Are You Sure You Want To Sign Out", "Yes", "No");
+
+                if (result)
                 {
-                    await App.PCA.RemoveAsync(accounts.FirstOrDefault());
                     accounts = await App.PCA.GetAccountsAsync();
+                    while (accounts.Any())
+                    {
+                        await App.PCA.RemoveAsync(accounts.FirstOrDefault());
+                        accounts = await App.PCA.GetAccountsAsync();
+                    }
+                    SignedIn = false;
                 }
-                SignedIn = false;
-                await settings.DisplayAlert("Sign Out", "Successfully Signed Out Of OneDrive Account", "Ok");
+            }
+            catch(Exception ex)
+            {
+                DisplayMessage("Already Signed Out", ex.Message, "Ok");
             }
         }
 

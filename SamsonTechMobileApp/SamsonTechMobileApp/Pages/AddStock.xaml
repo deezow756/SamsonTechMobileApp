@@ -1,17 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SamsonTechMobileApp.Pages.AddStock">
+             x:Class="SamsonTechMobileApp.Pages.AddStock"
+             BackgroundImage="bg.png">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
-            <Label Text="Add Stock" HorizontalTextAlignment="Center"/>
-            <Label Text="Name" HorizontalTextAlignment="Center"/>
-            <Editor Text="" x:Name="txtName"/>
-            <Label Text="Quantity" HorizontalTextAlignment="Center"/>
-            <Editor Text="" x:Name="txtQuantity"/>
+            <Label Text="Add Stock" HorizontalTextAlignment="Center" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+            <Label Text="Name" HorizontalTextAlignment="Center" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+            <Editor Text="" x:Name="txtName" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+            <Label Text="Quantity" HorizontalTextAlignment="Center" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+            <Editor Text="" x:Name="txtQuantity" TextColor="LimeGreen" BackgroundColor="Transparent"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Button Text="Back" x:Name="btnBack" Clicked="BtnBack_Clicked"/>
-                <Button Text="Save" x:Name="btnSave" Clicked="BtnSave_Clicked"/>
+                <Button Text="Save" x:Name="btnSave" Clicked="BtnSave_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderRadius="1">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.8"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

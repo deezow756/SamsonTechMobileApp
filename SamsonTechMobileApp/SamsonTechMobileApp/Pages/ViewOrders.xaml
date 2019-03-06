@@ -7,7 +7,22 @@
         <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">            
             <Label Text="Filter" HorizontalTextAlignment="Center" FontSize="30" TextColor="LimeGreen"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <ImageButton Source="left.png" x:Name="btnPrevMon" Clicked="btnPrevMon_Clicked" BackgroundColor="Transparent" WidthRequest="60" HeightRequest="60"/>
+                <ImageButton Source="left.png" x:Name="btnPrevMon" Clicked="btnPrevMon_Clicked" BackgroundColor="Transparent" WidthRequest="60" HeightRequest="60">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.8"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
                 <Picker Title="" x:Name="lstMonth" WidthRequest="100" SelectedIndexChanged="lstMonth_SelectedIndexChanged" TextColor="LimeGreen">
                     <Picker.Items>
                         <x:String>Jan</x:String>
@@ -38,7 +53,22 @@
                         -1
                     </Picker.SelectedIndex>
                 </Picker>
-                <ImageButton Source="right.png" x:Name="btnNextMon" Clicked="btnNextMon_Clicked" BackgroundColor="Transparent" WidthRequest="60" HeightRequest="60"/>
+                <ImageButton Source="right.png" x:Name="btnNextMon" Clicked="btnNextMon_Clicked" BackgroundColor="Transparent" WidthRequest="60" HeightRequest="60">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.8"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
             </StackLayout>
             <ListView x:Name="listOrders">
                 <ListView.ItemTemplate>

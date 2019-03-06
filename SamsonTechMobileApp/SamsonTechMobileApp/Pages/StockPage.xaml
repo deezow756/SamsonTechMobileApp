@@ -13,7 +13,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Add Stock" x:Name="btnAddStock" Clicked="BtnAddStock_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>
+            <!--<Button Text="Add Stock" x:Name="btnAddStock" Clicked="BtnAddStock_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

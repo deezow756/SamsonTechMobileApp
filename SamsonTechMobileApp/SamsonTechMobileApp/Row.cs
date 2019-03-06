@@ -25,10 +25,11 @@ namespace SamsonTechMobileApp
 
             section.Orientation = StackOrientation.Horizontal;
             section.HorizontalOptions = LayoutOptions.CenterAndExpand;
+            section.Spacing = 50;
 
             take.Source = "btnMinus";
-            take.WidthRequest = 40;
-            take.HeightRequest = 40;
+            take.WidthRequest = 50;
+            take.HeightRequest = 50;
             take.BackgroundColor = Color.Transparent;
             take.Clicked += TakeOnClicked;
             if (int.Parse(quantity) == 0) { take.IsEnabled = false; }
@@ -38,15 +39,15 @@ namespace SamsonTechMobileApp
             view.VerticalOptions = LayoutOptions.CenterAndExpand;
 
             Name.Text = name;
-            Name.FontSize = 20;
+            Name.FontSize = 25;
             Name.HorizontalTextAlignment = TextAlignment.Center;
             Name.TextColor = Color.LimeGreen;
             Name.BackgroundColor = Color.Transparent;
-            view.Children.Add(Name);
+            Rows.Children.Add(Name);
 
             StockQuantity = quantity;
             Quantity.Text = quantity;
-            Quantity.FontSize = 15;
+            Quantity.FontSize = 25;
             Quantity.HorizontalTextAlignment = TextAlignment.Center;
             Quantity.TextColor = Color.LimeGreen;
             Quantity.BackgroundColor = Color.Transparent;
@@ -55,8 +56,8 @@ namespace SamsonTechMobileApp
             section.Children.Add(view);
 
             plus.Source = "btnPlus";
-            plus.WidthRequest = 40;
-            plus.HeightRequest = 40;
+            plus.WidthRequest = 50;
+            plus.HeightRequest = 50;
             plus.BackgroundColor = Color.Transparent;
             plus.Clicked += PlusOnClicked;
             section.Children.Add(plus);

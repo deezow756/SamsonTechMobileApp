@@ -25,26 +25,46 @@ namespace SamsonTechMobileApp.Pages
         {
             InitializeComponent();
             this.oneDrive = oneDrive;
-            if(oneDrive.SignedIn)
+            this.oneDrive.settings = this;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (oneDrive.SignedIn)
             {
-                btnSignIn.IsEnabled = false;
+                txtStatus.Text = "Signed In";
             }
-            if (!oneDrive.SignedIn)
+            else
             {
-                btnSignOut.IsEnabled = false;
+                txtStatus.Text = "Signed Out";
             }
         }
 
         private void btnSignIn_Clicked(object sender, EventArgs e)
         {
             oneDrive.SignIn();
-            
+            if (oneDrive.SignedIn)
+            {
+                txtStatus.Text = "Signed In";
+            }
+            else
+            {
+                txtStatus.Text = "Signed Out";
+            }
         }
 
         private void btnSignOut_Clicked(object sender, EventArgs e)
         {
             oneDrive.SignOut();
-            
+            if (oneDrive.SignedIn)
+            {
+                txtStatus.Text = "Signed In";
+            }
+            else
+            {
+                txtStatus.Text = "Signed Out";
+            }
         }
     }
 }
