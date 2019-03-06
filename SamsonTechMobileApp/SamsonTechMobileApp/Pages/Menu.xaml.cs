@@ -31,6 +31,12 @@ namespace SamsonTechMobileApp
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+            if (AfterStartUp && oneDrive.SignedIn)
+            {
+                oneDrive.Sync();
+            }
+
             FileManager fileManager = new FileManager();
             Display display = new Display(fileManager.LoadOrders());
             try
@@ -39,10 +45,6 @@ namespace SamsonTechMobileApp
             }
             catch (Exception) { }
 
-            if(AfterStartUp && oneDrive.SignedIn)
-            {
-                oneDrive.SaveOrdersNStocks();
-            }
             AfterStartUp = true;
         }
 

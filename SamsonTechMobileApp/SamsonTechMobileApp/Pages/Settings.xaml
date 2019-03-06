@@ -4,10 +4,10 @@
              x:Class="SamsonTechMobileApp.Pages.Settings">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Settings" HorizontalTextAlignment="Center" FontSize="50" />
-            <Label Text="OneDrive Options" HorizontalTextAlignment="Center" FontSize="30"/>
-            <Button Text="Sign In" x:Name="btnSignIn" Clicked="btnSignIn_Clicked" FontSize="30"/>
-            <Button Text="Sign Out" x:Name="btnSignOut" Clicked="btnSignOut_Clicked" FontSize="30"/>
+            <Label Text="Settings" HorizontalTextAlignment="Center" FontSize="50" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+            <Label Text="OneDrive Options" HorizontalTextAlignment="Center" FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+            <Button Text="Sign In" x:Name="btnSignIn" Clicked="btnSignIn_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderRadius="1"/>
+            <Button Text="Sign Out" x:Name="btnSignOut" Clicked="btnSignOut_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderRadius="1"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

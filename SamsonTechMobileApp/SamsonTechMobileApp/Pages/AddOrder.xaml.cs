@@ -135,6 +135,13 @@ namespace SamsonTechMobileApp.Pages
             devicePicker3.ItemsSource = lstDevice;
             devicePicker3.WidthRequest = 200;
 
+            devicePicker1.TextColor = Color.LimeGreen;
+            devicePicker1.BackgroundColor = Color.Transparent;
+            devicePicker2.TextColor = Color.LimeGreen;
+            devicePicker2.BackgroundColor = Color.Transparent;
+            devicePicker3.TextColor = Color.LimeGreen;
+            devicePicker3.BackgroundColor = Color.Transparent;
+
             colourPicker1 = new Picker();
             colourPicker1.ItemsSource = lstColour;
             colourPicker1.WidthRequest = 200;
@@ -144,6 +151,13 @@ namespace SamsonTechMobileApp.Pages
             colourPicker3 = new Picker();
             colourPicker3.ItemsSource = lstColour;
             colourPicker3.WidthRequest = 200;
+
+            colourPicker1.TextColor = Color.LimeGreen;
+            colourPicker1.BackgroundColor = Color.Transparent;
+            colourPicker2.TextColor = Color.LimeGreen;
+            colourPicker2.BackgroundColor = Color.Transparent;
+            colourPicker3.TextColor = Color.LimeGreen;
+            colourPicker3.BackgroundColor = Color.Transparent;
 
             devices1.Children.Clear();
             devices2.Children.Clear();
