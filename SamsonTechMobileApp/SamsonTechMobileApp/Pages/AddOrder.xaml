@@ -2,34 +2,33 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SamsonTechMobileApp.Pages.AddOrder"
-             BackgroundImage="bg.png">
+             BackgroundImage="bg.png"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Label Text="Name:" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="LimeGreen" BackgroundColor="Transparent" />
-                <Editor Text="" x:Name="txtName" WidthRequest="300" AutoSize="TextChanges" TextColor="LimeGreen" BackgroundColor="Transparent" PlaceholderColor="LimeGreen"/>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Label Text="Contact Info:" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-                <Editor Text="" x:Name="txtContact" WidthRequest="250" AutoSize="TextChanges" TextColor="LimeGreen" BackgroundColor="Transparent" PlaceholderColor="LimeGreen"/>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Date:" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-                <DatePicker x:Name="pickerDate" MinimumDate="01/11/2018" WidthRequest="200" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Device/Devices:" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-                <Picker Title="" x:Name="numOfDevices" WidthRequest="200" SelectedIndexChanged="numOfDevices_SelectedIndexChanged" TextColor="LimeGreen" BackgroundColor="Transparent">
-                    <Picker.Items>
-                        <x:String>1</x:String>
-                        <x:String>2</x:String>
-                        <x:String>3</x:String>
-                    </Picker.Items>
-                    <Picker.SelectedIndex>
-                        -1
-                    </Picker.SelectedIndex>
-                </Picker>
-            </StackLayout>
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+            <Label Text="Add Order" FontSize="40" TextColor="LimeGreen" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="Name" HorizontalTextAlignment="Center" TextColor="LimeGreen" BackgroundColor="Transparent" FontSize="20" />
+            <Editor Text="" x:Name="txtName" WidthRequest="300" AutoSize="TextChanges" TextColor="LimeGreen" BackgroundColor="Transparent" PlaceholderColor="LimeGreen"/>
+
+            <Label Text="Contact Info" HorizontalTextAlignment="Center" TextColor="LimeGreen" BackgroundColor="Transparent" FontSize="20"/>
+            <Editor Text="" x:Name="txtContact" WidthRequest="250" AutoSize="TextChanges" TextColor="LimeGreen" BackgroundColor="Transparent" PlaceholderColor="LimeGreen"/>
+
+            <Label Text="Date" HorizontalTextAlignment="Center" TextColor="LimeGreen" BackgroundColor="Transparent" FontSize="20"/>
+            <DatePicker x:Name="pickerDate" MinimumDate="01/11/2018" WidthRequest="200" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+
+            <Label Text="Device/Devices" HorizontalTextAlignment="Center" TextColor="LimeGreen" BackgroundColor="Transparent" FontSize="20"/>
+            <Picker Title="" x:Name="numOfDevices" WidthRequest="200" SelectedIndexChanged="numOfDevices_SelectedIndexChanged" TextColor="LimeGreen" BackgroundColor="Transparent">
+                <Picker.Items>
+                    <x:String>1</x:String>
+                    <x:String>2</x:String>
+                    <x:String>3</x:String>
+                </Picker.Items>
+                <Picker.SelectedIndex>
+                    -1
+                </Picker.SelectedIndex>
+            </Picker>
+
             <StackLayout Orientation="Vertical" x:Name="devices">
                 <StackLayout Orientation="Horizontal" x:Name="devices1">
 
@@ -41,30 +40,18 @@
 
                 </StackLayout>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" >
-                <Label Text="Reason For Fix:" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-                <Editor Text="" x:Name="txtReason" WidthRequest="250" AutoSize="TextChanges" TextColor="LimeGreen" BackgroundColor="Transparent" PlaceholderColor="LimeGreen"/>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal" >
-                <Label Text="Price:" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-                <Editor Text="" x:Name="txtPrice" WidthRequest="200" AutoSize="TextChanges" TextColor="LimeGreen" BackgroundColor="Transparent" PlaceholderColor="LimeGreen"/>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal" >
-                <Label Text="Got Part:" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-                <Picker Title="" x:Name="lstPart" WidthRequest="200" TextColor="LimeGreen" BackgroundColor="Transparent">
-                    <Picker.Items>
-                        <x:String>No</x:String>
-                        <x:String>Yes</x:String>
-                    </Picker.Items>
-                    <Picker.SelectedIndex>
-                        -1
-                    </Picker.SelectedIndex>
-                </Picker>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal" >
-                <Label Text="Cost Of Part:" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-                <Editor Text="" x:Name="txtCost" WidthRequest="200" AutoSize="TextChanges" TextColor="LimeGreen" BackgroundColor="Transparent" PlaceholderColor="LimeGreen"/>
-            </StackLayout>
+
+            <Label Text="Reason For Fix" HorizontalTextAlignment="Center" TextColor="LimeGreen" BackgroundColor="Transparent" FontSize="20"/>
+            <Editor Text="" x:Name="txtReason" WidthRequest="250" AutoSize="TextChanges" TextColor="LimeGreen" BackgroundColor="Transparent" PlaceholderColor="LimeGreen"/>
+
+
+            <Label Text="Price" HorizontalTextAlignment="Center" TextColor="LimeGreen" BackgroundColor="Transparent" FontSize="20"/>
+            <Editor Text="" x:Name="txtPrice" WidthRequest="200" AutoSize="TextChanges" TextColor="LimeGreen" BackgroundColor="Transparent" PlaceholderColor="LimeGreen"/>
+
+
+            <Label Text="Cost" HorizontalTextAlignment="Center" TextColor="LimeGreen" BackgroundColor="Transparent" FontSize="20"/>
+            <Editor Text="" x:Name="txtCost" WidthRequest="200" AutoSize="TextChanges" TextColor="LimeGreen" BackgroundColor="Transparent" PlaceholderColor="LimeGreen"/>
+
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <Button Text="Save" x:Name="btnSave" Clicked="btnSave_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1">
                     <VisualStateManager.VisualStateGroups>

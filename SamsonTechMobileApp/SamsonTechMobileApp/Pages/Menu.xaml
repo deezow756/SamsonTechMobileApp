@@ -2,9 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SamsonTechMobileApp.Menu"
-             BackgroundImage="bg.png">
+             BackgroundImage="bg.png"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="CenterAndExpand" Spacing="10">
+            <Label Text="Menu" FontSize="50" TextColor="LimeGreen" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
             <Button Text="Display Orders" x:Name="btnDisplayOrders" Clicked="btnDisplayOrders_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="CommonStates">
@@ -69,7 +71,7 @@
                     </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
             </Button>
-            <ListView ItemsSource="" x:Name="listOrders">
+            <ListView x:Name="listOrders">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell Tapped="TextCell_Tapped" Text="{Binding OrderDetails}" TextColor="LimeGreen"/>

@@ -11,12 +11,11 @@ namespace SamsonTechMobileApp
     public class FileManager
     {
         public static string ordersFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "OrderS.json");
-        public static string stocksFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Stocks.json");
+        public static string stocksFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "ItemS.json");
         string idCountFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Ids.txt");
 
         public void SaveOrder(AddOrder addOrder, Order order)
         {
-
             List<Order> lstOrders = LoadOrders().ToList<Order>();
 
             int highest = 0;
@@ -51,17 +50,17 @@ namespace SamsonTechMobileApp
             }
         }
 
-        public void SaveStock(AddStock addStock, Stock stock)
+        public void AddItem(AddStock addStock, Item item)
         {           
 
             if (!File.Exists(stocksFilePath))
             {
-                File.WriteAllText(stocksFilePath, JsonConvert.SerializeObject(stock));
+                File.WriteAllText(stocksFilePath, JsonConvert.SerializeObject(item));
             }
             else
             {
-                List<Stock> lstStocks = LoadStocks().ToList<Stock>();
-                lstStocks.Add(stock);
+                List<Item> lstStocks = LoadItems().ToList<Item>();
+                lstStocks.Add(item);
 
                 string[] jsons = new string[lstStocks.Count];
 
@@ -94,19 +93,19 @@ namespace SamsonTechMobileApp
             }
         }
 
-        public void SaveStockEdit(Stock stock)
+        public void SaveStockEdit(Item item)
         {
-            Stock[] stocks = LoadStocks();
+            Item[] items = LoadItems();
 
-            for (int i = 0; i < stocks.Length; i++)
+            for (int i = 0; i < items.Length; i++)
             {
-                if (stock.Name == stocks[i].Name)
+                if (item.ClassId == items[i].ClassId)
                 {
-                    stocks[i] = stock;
+                    items[i] = item;
                     List<string> jsons = new List<string>();
-                    for (int j = 0; j < stocks.Length; j++)
+                    for (int j = 0; j < items.Length; j++)
                     {
-                        jsons.Add(JsonConvert.SerializeObject(stocks[j]));
+                        jsons.Add(JsonConvert.SerializeObject(items[j]));
                     }
                     File.WriteAllLines(stocksFilePath, jsons.ToArray());
                     break;
@@ -131,33 +130,52 @@ namespace SamsonTechMobileApp
             return null;
         }
 
-        public void SaveStocks(Stock[] stocks)
+        public void SaveStocks(Item[] items)
         {
-            string[] jsons = new string[stocks.Length];
+            string[] jsons = new string[items.Length];
 
-            for (int i = 0; i < stocks.Length; i++)
+            for (int i = 0; i < items.Length; i++)
             {
-                jsons[i] = JsonConvert.SerializeObject(stocks[i]);
+                jsons[i] = JsonConvert.SerializeObject(items[i]);
             }
 
             File.WriteAllLines(stocksFilePath, jsons);
         }
 
-        public Stock[] LoadStocks()
+        public Item[] LoadItems()
         {
             if (File.Exists(stocksFilePath))
             {
                 string[] allJson = File.ReadAllLines(stocksFilePath);
-                Stock[] lstStocks = new Stock[allJson.Length];
+                Item[] lstItems = new Item[allJson.Length];
 
                 for (int i = 0; i < allJson.Length; i++)
                 {
-                    lstStocks[i] = JsonConvert.DeserializeObject<Stock>(allJson[i]);
+                    lstItems[i] = JsonConvert.DeserializeObject<Item>(allJson[i]);
                 }
 
-                return lstStocks;
+                return lstItems;
             }
             return null;
+        }
+
+        public void DeleteItems(List<Item> itemsToDelete)
+        {
+            List<Item> items = LoadItems().ToList();
+
+            for (int i = 0; i < itemsToDelete.Count; i++)
+            {
+                for (int j = 0; j < items.Count; j++)
+                {
+                    if(itemsToDelete[i].ClassId == items[j].ClassId)
+                    {
+                        items.Remove(items[j]);
+                        break;
+                    }
+                }
+            }
+
+            SaveStocks(items.ToArray());
         }
 
         public Order RefreshOrder(Order order)

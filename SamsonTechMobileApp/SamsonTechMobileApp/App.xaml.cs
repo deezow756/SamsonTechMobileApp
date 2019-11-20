@@ -32,7 +32,8 @@ namespace SamsonTechMobileApp
             };
 
             DependencyService.Register<IProgressInterface>();
-            MainPage = new NavigationPage(new MainPage() { Title = "Login"}) { BarBackgroundColor = Color.LimeGreen, BarTextColor = Color.Black};
+            DependencyService.Register<IToastInterface>();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

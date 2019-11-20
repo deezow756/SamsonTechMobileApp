@@ -16,7 +16,7 @@ namespace SamsonTechMobileApp
     public class OneDrive
     {
         private const string odOrdersFilePath = "/Documents/SamsonTech/Orders.txt";
-        private const string odStocksFilePath = "/Documents/SamsonTech/Stock.txt";
+        private const string odStocksFilePath = "/Documents/SamsonTech/Items.txt";
 
         public bool SignedIn = false;
 
@@ -90,6 +90,7 @@ namespace SamsonTechMobileApp
                         accounts = await App.PCA.GetAccountsAsync();
                     }
                     SignedIn = false;
+                    ToastManager.Show("Successfully Signed Out");
                 }
             }
             catch(Exception ex)
@@ -159,7 +160,10 @@ namespace SamsonTechMobileApp
                 else if (odDateOrders.Year < dateOrders.Year) SaveOrders();
                 else TryGetOrders();
             }
-            else TryGetOrders();
+            else
+            {
+                TryGetOrders();
+            }
 
 
             if (System.IO.File.Exists(FileManager.stocksFilePath))
@@ -197,7 +201,12 @@ namespace SamsonTechMobileApp
                 else if (odDateStocks.Year < dateStocks.Year) SaveStocks();
                 else TryGetStocks();
             }
-            else TryGetStocks();
+            else
+            {
+                TryGetStocks();
+            }
+
+            ToastManager.Show("Successfully Synced");
         }
 
 
@@ -233,7 +242,7 @@ namespace SamsonTechMobileApp
 
             try
             {
-                currentOrdersTextStream = await App.graphClient.Me.Drive.Root.ItemWithPath("/Documents/SamsonTech/Orders.txt").Content.Request().GetAsync();
+                currentOrdersTextStream = await App.graphClient.Me.Drive.Root.ItemWithPath(odOrdersFilePath).Content.Request().GetAsync();
                 Progress.Hide();
             }
             //If the user account is MSA (not work or school), the service will throw an exception.
@@ -253,7 +262,7 @@ namespace SamsonTechMobileApp
 
             try
             {
-                currentStocksTextStream = await App.graphClient.Me.Drive.Root.ItemWithPath("/Documents/SamsonTech/Stock.txt").Content.Request().GetAsync();
+                currentStocksTextStream = await App.graphClient.Me.Drive.Root.ItemWithPath(odStocksFilePath).Content.Request().GetAsync();
                 Progress.Hide();
             }
             //If the user account is MSA (not work or school), the service will throw an exception.
@@ -266,55 +275,7 @@ namespace SamsonTechMobileApp
 
             return currentStocksTextStream;
         }
-
-        public async void test()
-        {
-
-            try
-            {
-                var currentStocksTextStream = await App.graphClient.Me.Drive.Root.ItemWithPath("/Documents/SamsonTech/Stock.txt").Versions.Request().GetAsync();
-
-                List<DriveItemVersion> verisons = new List<DriveItemVersion>();
-
-                string content = "";
-
-                for (int i = 0; i < currentStocksTextStream.Count; i++)
-                {
-                    content += currentStocksTextStream[i].LastModifiedDateTime.ToString() + "\n";
-                }
-
-                DisplayMessage("test", content, "ok");
-            }
-            catch(Exception ex)
-            {
-                DisplayMessage("error", ex.Message, "ok");
-            }
-        }
-
-        //private async Task<DateTime> GetLastModifided(string type)
-        //{
-        //    if(type == "Orders")
-        //    {
-        //        try
-        //        {
-        //            var currentStocksTextStream = await App.graphClient.Me.Drive.Root.ItemWithPath("/Documents/SamsonTech/Stock.txt").Versions.Request().GetAsync();
-                    
-        //        }
-        //        catch(Exception ex)
-        //        {
-
-        //        }
-        //    }
-        //    else if(type == "Stocks")
-        //    {
-
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
-
+        
         public async void SaveOrders()
         {
             Stream orders;
@@ -369,7 +330,7 @@ namespace SamsonTechMobileApp
             try
             {
                 Stream fileStream = new MemoryStream(file);
-                uploadedItem = await App.graphClient.Me.Drive.Root.ItemWithPath("/Documents/SamsonTech/Orders.txt").Content.Request().PutAsync<DriveItem>(fileStream);
+                uploadedItem = await App.graphClient.Me.Drive.Root.ItemWithPath(odOrdersFilePath).Content.Request().PutAsync<DriveItem>(fileStream);
 
                 Progress.Hide();
             }
@@ -387,7 +348,7 @@ namespace SamsonTechMobileApp
             try
             {
                 Stream fileStream = new MemoryStream(file);
-                uploadedItem = await App.graphClient.Me.Drive.Root.ItemWithPath("/Documents/SamsonTech/Stock.txt").Content.Request().PutAsync<DriveItem>(fileStream);
+                uploadedItem = await App.graphClient.Me.Drive.Root.ItemWithPath(odStocksFilePath).Content.Request().PutAsync<DriveItem>(fileStream);
 
                 Progress.Hide();
             }

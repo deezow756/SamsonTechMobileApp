@@ -12,51 +12,52 @@ namespace SamsonTechMobileApp.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class StockInfo : ContentPage
 	{
-        Stock stock;
+        Item item;
 
-        List<Row> rows = new List<Row>();
-
-        string[] Names;
-        string[] Quantities;
-
-		public StockInfo (Stock stock)
+		public StockInfo (Item item)
 		{
 			InitializeComponent ();
-            this.stock = stock;
-            txtName.Text = stock.Name;
-            Names = stock.Models.Split(',');
-            Quantities = stock.Quantity.Split(',');
-     
-            for (int i = 0; i < Names.Length; i++)
-            {
-                Row row = new Row(this, Names[i], Quantities[i], Rows);
-                rows.Add(row);
-            }
+            this.item = item;
+            txtName.Text = item.Name;
+            txtQuantity.Text = item.Quantity;
+            txtDescription.Text = item.Description;
+            
 		}
 
         private void BtnSave_Clicked(object sender, EventArgs e)
         {
-            string quantities = "";
-
-            for (int i = 0; i < Names.Length; i++)
-            {
-                if (i == Names.Length - 1)
-                {
-                    quantities += rows[i].StockQuantity;
-                }
-                else
-                {
-                    quantities += rows[i].StockQuantity + ",";
-                }
-            }
-
-            stock.Quantity = quantities;
+            item.Quantity = txtQuantity.Text;
 
             FileManager fileManager = new FileManager();
-            fileManager.SaveStockEdit(stock);
-            DisplayAlert("Saved", "Stock Was Successfully Updated", "Ok");
+            fileManager.SaveStockEdit(item);
+            ToastManager.Show("Stock Was Successfully Updated");
             this.Navigation.PopAsync();
         }
 
+        private void BtnMinus_Clicked(object sender, EventArgs e)
+        {
+            int quantity = 0;
+            try { quantity = int.Parse(txtQuantity.Text); }
+            catch (Exception ex) { DisplayAlert("Error: ", ex.Message, "Dismiss"); }
+
+            quantity--;
+
+            if (quantity == 0) { btnMinus.IsEnabled = false; }
+            txtQuantity.Text = quantity.ToString();
+            item.Quantity = quantity.ToString();
+        }
+
+        private void BtnPlus_Clicked(object sender, EventArgs e)
+        {
+            int quantity = 0;
+            try { quantity = int.Parse(txtQuantity.Text); }
+            catch (Exception ex) { DisplayAlert("Error: ", ex.Message, "Dismiss"); }
+
+            quantity++;
+
+            txtQuantity.Text = quantity.ToString();
+            item.Quantity = quantity.ToString();
+            btnMinus.IsEnabled = true;
+        }
     }
 }

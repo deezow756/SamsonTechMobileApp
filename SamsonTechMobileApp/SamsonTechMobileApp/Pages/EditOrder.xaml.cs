@@ -70,7 +70,6 @@ namespace SamsonTechMobileApp.Pages
             }
             order.ReasonForFix = txtReason.Text;
             order.Price = txtPrice.Text;
-            order.GotPart = lstPart.SelectedItem.ToString();
             order.Cost = txtCost.Text;
             FileManager fileManager = new FileManager();
             fileManager.SaveEdit(order);
@@ -105,14 +104,6 @@ namespace SamsonTechMobileApp.Pages
             DisplayDevicesForFill();
             txtReason.Text = order.ReasonForFix;
             txtPrice.Text = order.Price;
-            if (order.GotPart == "Yes")
-            {
-                lstPart.SelectedIndex = 1;
-            }
-            else
-            {
-                lstPart.SelectedIndex = 0;
-            }
             txtCost.Text = order.Cost;
         }
 
@@ -200,8 +191,11 @@ namespace SamsonTechMobileApp.Pages
                 devices1.Children.Add(devicePicker1);
                 devices1.Children.Add(colourPicker1);
 
-                devicePicker1.SelectedIndex = GetDeviceIndex(lstDevice, devicesplit[0]);
-                colourPicker1.SelectedIndex = GetColourIndex(lstColour, coloursplit[0]);
+                if (devicesplit.Length > 0)
+                {
+                    devicePicker1.SelectedIndex = GetDeviceIndex(lstDevice, devicesplit[0]);
+                    colourPicker1.SelectedIndex = GetColourIndex(lstColour, coloursplit[0]);
+                }
             }
             if (numOfDevices.SelectedIndex == 1)
             {
@@ -210,11 +204,17 @@ namespace SamsonTechMobileApp.Pages
                 devices2.Children.Add(devicePicker2);
                 devices2.Children.Add(colourPicker2);
 
-                devicePicker1.SelectedIndex = GetDeviceIndex(lstDevice, devicesplit[0]);
-                colourPicker1.SelectedIndex = GetColourIndex(lstColour, coloursplit[0]);
+                if (devicesplit.Length > 0)
+                {
+                    devicePicker1.SelectedIndex = GetDeviceIndex(lstDevice, devicesplit[0]);
+                    colourPicker1.SelectedIndex = GetColourIndex(lstColour, coloursplit[0]);
+                }
 
-                devicePicker2.SelectedIndex = GetDeviceIndex(lstDevice, devicesplit[1]);
-                colourPicker2.SelectedIndex = GetColourIndex(lstColour, coloursplit[1]);
+                if (devicesplit.Length > 1)
+                {
+                    devicePicker2.SelectedIndex = GetDeviceIndex(lstDevice, devicesplit[1]);
+                    colourPicker2.SelectedIndex = GetColourIndex(lstColour, coloursplit[1]);
+                }
             }
             if (numOfDevices.SelectedIndex == 2)
             {
@@ -225,39 +225,62 @@ namespace SamsonTechMobileApp.Pages
                 devices3.Children.Add(devicePicker3);
                 devices3.Children.Add(colourPicker3);
 
-                devicePicker1.SelectedIndex = GetDeviceIndex(lstDevice, devicesplit[0]);
-                colourPicker1.SelectedIndex = GetColourIndex(lstColour, coloursplit[0]);
+                if (devicesplit.Length > 0)
+                {
+                    devicePicker1.SelectedIndex = GetDeviceIndex(lstDevice, devicesplit[0]);
+                    colourPicker1.SelectedIndex = GetColourIndex(lstColour, coloursplit[0]);
+                }
 
-                devicePicker2.SelectedIndex = GetDeviceIndex(lstDevice, devicesplit[1]);
-                colourPicker2.SelectedIndex = GetColourIndex(lstColour, coloursplit[1]);
+                if (devicesplit.Length > 1)
+                {
+                    devicePicker2.SelectedIndex = GetDeviceIndex(lstDevice, devicesplit[1]);
+                    colourPicker2.SelectedIndex = GetColourIndex(lstColour, coloursplit[1]);
+                }
 
-                devicePicker3.SelectedIndex = GetDeviceIndex(lstDevice, devicesplit[2]);
-                colourPicker3.SelectedIndex = GetColourIndex(lstColour, coloursplit[2]);
+                if (devicesplit.Length > 2)
+                {
+                    devicePicker3.SelectedIndex = GetDeviceIndex(lstDevice, devicesplit[2]);
+                    colourPicker3.SelectedIndex = GetColourIndex(lstColour, coloursplit[2]);
+                }
             }
         }
 
         public int GetDeviceIndex(List<string> devices, string device)
         {
-            for (int i = 0; i < devices.Count; i++)
+            try
             {
-                if (device == devices[i])
+                for (int i = 0; i < devices.Count; i++)
                 {
-                    return i;
+                    if (device == devices[i])
+                    {
+                        return i;
+                    }
                 }
+                return 0;
             }
-            return 0;
+            catch(Exception ex)
+            {
+                return 0;
+            }
         }
 
         public int GetColourIndex(List<string> colours, string colour)
         {
-            for (int i = 0; i < colours.Count; i++)
+            try
             {
-                if (colour == colours[i])
+                for (int i = 0; i < colours.Count; i++)
                 {
-                    return i;
+                    if (colour == colours[i])
+                    {
+                        return i;
+                    }
                 }
+                return 0;
             }
-            return 0;
+            catch(Exception ex)
+            {
+                return 0;
+            }
         }
     }
 }

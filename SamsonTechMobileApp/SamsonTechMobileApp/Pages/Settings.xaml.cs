@@ -34,36 +34,41 @@ namespace SamsonTechMobileApp.Pages
             if (oneDrive.SignedIn)
             {
                 txtStatus.Text = "Signed In";
+                btnSignIn.IsEnabled = false;
             }
             else
             {
                 txtStatus.Text = "Signed Out";
+                btnSignOut.IsEnabled = false;
             }
         }
 
         private void btnSignIn_Clicked(object sender, EventArgs e)
         {
             oneDrive.SignIn();
-            if (oneDrive.SignedIn)
-            {
-                txtStatus.Text = "Signed In";
-            }
-            else
-            {
-                txtStatus.Text = "Signed Out";
-            }
+            CheckSignedIn();
         }
 
         private void btnSignOut_Clicked(object sender, EventArgs e)
         {
             oneDrive.SignOut();
+            CheckSignedIn();
+        }
+
+        private async void CheckSignedIn()
+        {
+            await Task.Delay(2000);
             if (oneDrive.SignedIn)
             {
                 txtStatus.Text = "Signed In";
+                btnSignOut.IsEnabled = true;
+                btnSignIn.IsEnabled = false;
             }
             else
             {
                 txtStatus.Text = "Signed Out";
+                btnSignIn.IsEnabled = true;
+                btnSignOut.IsEnabled = false;
             }
         }
     }

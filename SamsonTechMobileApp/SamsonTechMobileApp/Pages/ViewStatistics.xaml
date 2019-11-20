@@ -2,9 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SamsonTechMobileApp.Pages.ViewStatistics"
-             BackgroundImage="bg.png">
+             BackgroundImage="bg.png"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
+            <Label Text="Statistics" FontSize="50" TextColor="LimeGreen" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+
             <Label Text="Filter" HorizontalTextAlignment="Center" FontSize="40" TextColor="LimeGreen" BackgroundColor="Transparent"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <Picker Title="" x:Name="lstMonth" WidthRequest="150" SelectedIndexChanged="lstMonth_SelectedIndexChanged" TextColor="LimeGreen" BackgroundColor="Transparent">
@@ -51,8 +54,8 @@
                 <Label Text="Net Profit: " FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
                 <Label x:Name="txtMonNetProfit" FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <ImageButton Source="left.png" x:Name="btnPrevMon" Clicked="btnPrevMon_Clicked" BackgroundColor="Transparent">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="100">
+                <ImageButton Source="left.png" x:Name="btnPrevMon" Clicked="btnPrevMon_Clicked" BackgroundColor="Transparent" WidthRequest="50" HeightRequest="50">
                     <VisualStateManager.VisualStateGroups>
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
@@ -68,7 +71,7 @@
                         </VisualStateGroup>
                     </VisualStateManager.VisualStateGroups>
                 </ImageButton>
-                <ImageButton Source="right.png" x:Name="btnNextMon" Clicked="btnNextMon_Clicked" BackgroundColor="Transparent">
+                <ImageButton Source="right.png" x:Name="btnNextMon" Clicked="btnNextMon_Clicked" BackgroundColor="Transparent" WidthRequest="50" HeightRequest="50">
                     <VisualStateManager.VisualStateGroups>
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">

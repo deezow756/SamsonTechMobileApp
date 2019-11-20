@@ -6,16 +6,15 @@ namespace SamsonTechMobileApp
 {
     public class Order
     {
-        public string ID;
-        public string Name;
-        public string Contact;
-        public DateTime Date;
-        public string Device;
-        public string Colour;
-        public string ReasonForFix;
-        public string Price;
-        public string GotPart;
-        public string Cost;
-        public string Completed;
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public string Contact { get; set; }
+        public DateTime Date { get; set; }
+        public string Device { get; set; }
+        public string Colour { get; set; }
+        public string ReasonForFix { get; set; }
+        public string Price { get; set; }
+        public string Cost { get; set; }
+        public string Completed { get; set; }
     }
 }

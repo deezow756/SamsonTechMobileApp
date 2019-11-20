@@ -18,11 +18,12 @@ namespace SamsonTechMobileApp.Droid
 {
     class ProgressLoader : IProgressInterface
     {
+
         public void Hide()
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                AndHUD.Shared.Dismiss();
+                    //AndHUD.Shared.Dismiss();                
             });
         }
 
@@ -30,7 +31,7 @@ namespace SamsonTechMobileApp.Droid
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                AndHUD.Shared.Show(Forms.Context, status: title, maskType: MaskType.None);
+                //AndHUD.Shared.Show(Android.App.Application.Context, status: title, maskType: MaskType.Black);
             });
         }
     }

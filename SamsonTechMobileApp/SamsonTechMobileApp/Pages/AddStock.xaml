@@ -2,16 +2,27 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SamsonTechMobileApp.Pages.AddStock"
-             BackgroundImage="bg.png">
+             BackgroundImage="bg.png"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
-            <Label Text="Add Stock" HorizontalTextAlignment="Center" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-            <Label Text="Name" HorizontalTextAlignment="Center" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-            <Editor Text="" x:Name="txtName" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-            <Label Text="Quantity" HorizontalTextAlignment="Center" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-            <Editor Text="" x:Name="txtQuantity" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Button Text="Save" x:Name="btnSave" Clicked="BtnSave_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderRadius="1">
+            <Label Text="Add Stock" FontSize="50" TextColor="LimeGreen" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+
+            <Label Text="Type" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="LimeGreen" FontSize="30" BackgroundColor="Transparent"/>
+            <Picker Title="" x:Name="pickerType" FontSize="30" WidthRequest="200" SelectedIndexChanged="PickerType_SelectedIndexChanged" TextColor="LimeGreen" BackgroundColor="Transparent">
+                <Picker.Items>
+                    <x:String>Catergory</x:String>
+                    <x:String>Item</x:String>
+                </Picker.Items>
+                <Picker.SelectedIndex>
+                    -1
+                </Picker.SelectedIndex>
+            </Picker>
+            <StackLayout x:Name="enterSection" Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Button Text="Save" x:Name="btnSave" Clicked="BtnSave_Clicked" TextColor="LimeGreen" FontSize="30" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1" >
                     <VisualStateManager.VisualStateGroups>
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">

@@ -113,7 +113,6 @@ namespace SamsonTechMobileApp.Pages
             }
             txtReason.Text = order.ReasonForFix;
             txtPrice.Text = order.Price;
-            txtPart.Text = order.GotPart;
             txtCost.Text = order.Cost;
             txtCompleted.Text = order.Completed;
         }

@@ -2,10 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SamsonTechMobileApp.MainPage"
-             BackgroundImage="bg.png">
+             BackgroundImage="bg.png"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
-            <Label Text="rnbne" FontSize="50" TextColor="Transparent" BackgroundColor="Transparent"/>
+            <Label Text="SamsonTech" FontSize="50" TextColor="LimeGreen" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
             <Label Text="" x:Name="txtPasscode" FontSize="50" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="LimeGreen"/>
             <Image x:Name="line" Source="line.png" HorizontalOptions="CenterAndExpand" />
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="25">

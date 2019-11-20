@@ -2,18 +2,57 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SamsonTechMobileApp.Pages.StockPage"
-             BackgroundImage="bg.png">
+             BackgroundImage="bg.png"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" HorizontalOptions="Center">
-            <Label Text="Stock" FontSize="40" HorizontalTextAlignment="Center" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-            <ListView x:Name="liststock" HorizontalOptions="CenterAndExpand">
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+            <Label x:Name="txtTitle" FontSize="50" TextColor="LimeGreen" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+            <ListView x:Name="liststock" HorizontalOptions="CenterAndExpand" HasUnevenRows="False" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Tapped="TextCell_Tapped" Text="{Binding Name}" TextColor="LimeGreen"/>
+                        <ViewCell ClassId="{Binding ClassId}" Tapped="TextCell_Tapped">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Name}" TextColor="LimeGreen" FontSize="30" HorizontalOptions="StartAndExpand"/>
+                                <Image Source="{Binding Image}" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <!--<Button Text="Add Stock" x:Name="btnAddStock" Clicked="BtnAddStock_Clicked" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderWidth="1"/>-->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="50">
+                <ImageButton x:Name="btnAddStock" Source="Add.png" Clicked="BtnAddStock_Clicked" BackgroundColor="Transparent">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.9"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
+                <ImageButton x:Name="btnDelete" Source="Delete.png" Clicked="BtnDelete_Clicked" BackgroundColor="Transparent">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale" Value="0.9"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -67,7 +67,6 @@ namespace SamsonTechMobileApp.Pages
             }
             order.ReasonForFix = txtReason.Text;
             order.Price = txtPrice.Text;
-            order.GotPart = lstPart.SelectedItem.ToString();
             order.Cost = txtCost.Text;
             FileManager fileManager = new FileManager();
             fileManager.SaveOrder(this, order);
