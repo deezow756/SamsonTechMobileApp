@@ -12,7 +12,22 @@ namespace SamsonTechMobileApp
     {
         public static string ordersFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "OrderS.json");
         public static string stocksFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "ItemS.json");
+        public static string storageManagerFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "storageManager.txt");
         string idCountFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Ids.txt");
+
+        public bool StorageUsageExists()
+        {
+            return File.Exists(storageManagerFilePath);
+        }
+        public string[] GetStorageUsage()
+        {
+            return File.ReadAllLines(storageManagerFilePath);
+        }
+
+        public void SaveStorageUsage(string[] values)
+        {
+            File.WriteAllLines(storageManagerFilePath, values);
+        }
 
         public void SaveOrder(AddOrder addOrder, Order order)
         {

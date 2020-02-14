@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace SamsonTechMobileApp
 {
-    public class OneDrive
+    public class OneDrive : CloudStorage
     {
         private const string odOrdersFilePath = "/Documents/SamsonTech/Orders.txt";
         private const string odStocksFilePath = "/Documents/SamsonTech/Items.txt";
@@ -24,7 +24,6 @@ namespace SamsonTechMobileApp
         IEnumerable<IAccount> accounts;
 
         Menu menu;
-        public Settings settings;
 
         public OneDrive(Menu menu)
         {
@@ -43,7 +42,7 @@ namespace SamsonTechMobileApp
             }
         }
 
-        public async void SignIn()
+        public override async void Signin()
         {
             try
             {
@@ -58,14 +57,13 @@ namespace SamsonTechMobileApp
                 catch (Exception)
                 {
                     authResult = await App.PCA.AcquireTokenAsync(App.Scopes, App.UiParent);
-                    await RefreshUserDataAsync(authResult.AccessToken);
+                    await RefreshUserDataAsync(authResult.AccessToken);                    
                 }
 
                 SignedIn = true;
 
                 Sync();
 
-                if (menu != null) menu.FillTodayOrders();
             }
             catch (Exception ex)
             {
@@ -75,7 +73,7 @@ namespace SamsonTechMobileApp
             }
         }
 
-        public async void SignOut()
+        public override async void Signout()
         {
             try
             {
@@ -123,94 +121,107 @@ namespace SamsonTechMobileApp
             }
         }
 
-        public async void Sync()
+        public override async void Sync()
         {
-            if (System.IO.File.Exists(FileManager.ordersFilePath))
+            if (App.graphClient != null)
             {
-                var odItemDateOrders = await App.graphClient.Me.Drive.Root.ItemWithPath(odOrdersFilePath).Versions.Request().GetAsync();
-                Date odDateOrders = new Date(odItemDateOrders.First().LastModifiedDateTime.ToString().Split(' ')[0]);
-                Time odTimeOrders = new Time(odItemDateOrders.First().LastModifiedDateTime.ToString().Split(' ')[1]);
-                DateTime dateOrders = System.IO.File.GetLastWriteTime(FileManager.ordersFilePath);
-
-                if (odDateOrders.Year == dateOrders.Year)
+                if (System.IO.File.Exists(FileManager.ordersFilePath))
                 {
-                    if (odDateOrders.Month == dateOrders.Month)
+                    var odItemDateOrders = await App.graphClient.Me.Drive.Root.ItemWithPath(odOrdersFilePath).Versions.Request().GetAsync();
+                    Date odDateOrders = new Date(odItemDateOrders.First().LastModifiedDateTime.ToString().Split(' ')[0]);
+                    Time odTimeOrders = new Time(odItemDateOrders.First().LastModifiedDateTime.ToString().Split(' ')[1]);
+                    DateTime dateOrders = System.IO.File.GetLastWriteTime(FileManager.ordersFilePath);
+
+                    if (odDateOrders.Year == dateOrders.Year)
                     {
-                        if (odDateOrders.Day == dateOrders.Day)
+                        if (odDateOrders.Month == dateOrders.Month)
                         {
-                            if (odTimeOrders.Hours == dateOrders.Hour)
+                            if (odDateOrders.Day == dateOrders.Day)
                             {
-                                if (odTimeOrders.Minutes == dateOrders.Minute)
+                                if (odTimeOrders.Hours == dateOrders.Hour)
                                 {
-                                    if (odTimeOrders.Seconds < dateOrders.Second) SaveOrders();
+                                    if (odTimeOrders.Minutes == dateOrders.Minute)
+                                    {
+                                        if (odTimeOrders.Seconds < dateOrders.Second) SaveOrders();
+                                        else TryGetOrders();
+                                    }
+                                    else if (odTimeOrders.Minutes < dateOrders.Minute) SaveOrders();
                                     else TryGetOrders();
                                 }
-                                else if (odTimeOrders.Minutes < dateOrders.Minute) SaveOrders();
+                                else if (odTimeOrders.Hours < dateOrders.Hour) SaveOrders();
                                 else TryGetOrders();
                             }
-                            else if (odTimeOrders.Hours < dateOrders.Hour) SaveOrders();
+                            else if (odDateOrders.Day < dateOrders.Day) SaveOrders();
                             else TryGetOrders();
                         }
-                        else if (odDateOrders.Day < dateOrders.Day) SaveOrders();
+                        else if (odDateOrders.Month < dateOrders.Month) SaveOrders();
                         else TryGetOrders();
                     }
-                    else if (odDateOrders.Month < dateOrders.Month) SaveOrders();
+                    else if (odDateOrders.Year < dateOrders.Year) SaveOrders();
                     else TryGetOrders();
                 }
-                else if (odDateOrders.Year < dateOrders.Year) SaveOrders();
-                else TryGetOrders();
-            }
-            else
-            {
-                TryGetOrders();
-            }
-
-
-            if (System.IO.File.Exists(FileManager.stocksFilePath))
-            {
-                var odItemDateStocks = await App.graphClient.Me.Drive.Root.ItemWithPath(odStocksFilePath).Versions.Request().GetAsync();
-                Date odDateStocks = new Date(odItemDateStocks.First().LastModifiedDateTime.ToString().Split(' ')[0]);
-                Time odTimeStocks = new Time(odItemDateStocks.First().LastModifiedDateTime.ToString().Split(' ')[1]);
-                DateTime dateStocks = System.IO.File.GetLastWriteTime(FileManager.stocksFilePath);
-
-                if (odDateStocks.Year == dateStocks.Year)
+                else
                 {
-                    if (odDateStocks.Month == dateStocks.Month)
-                    {
-                        if (odDateStocks.Day == dateStocks.Day)
-                        {
-                            if (odTimeStocks.Hours == dateStocks.Hour)
-                            {
-                                if (odTimeStocks.Minutes == dateStocks.Minute)
-                                {
-                                    if (odTimeStocks.Seconds < dateStocks.Second) SaveStocks();
-                                    else TryGetStocks();
-                                }
-                                else if (odTimeStocks.Minutes < dateStocks.Minute) SaveStocks();
-                                else TryGetStocks();
-                            }
-                            else if (odTimeStocks.Hours < dateStocks.Hour) SaveStocks();
-                            else TryGetStocks();
-                        }
-                        else if (odDateStocks.Day < dateStocks.Day) SaveStocks();
-                        else TryGetStocks();
-                    }
-                    else if (odDateStocks.Month < dateStocks.Month) SaveStocks();
-                    else TryGetStocks();
+                    TryGetOrders();
                 }
-                else if (odDateStocks.Year < dateStocks.Year) SaveStocks();
-                else TryGetStocks();
-            }
-            else
-            {
-                TryGetStocks();
-            }
 
-            ToastManager.Show("Successfully Synced");
+
+
+                if (System.IO.File.Exists(FileManager.stocksFilePath))
+                {
+                    var odItemDateStocks = await App.graphClient.Me.Drive.Root.ItemWithPath(odStocksFilePath).Versions.Request().GetAsync();
+                    Date odDateStocks = new Date(odItemDateStocks.First().LastModifiedDateTime.ToString().Split(' ')[0]);
+                    Time odTimeStocks = new Time(odItemDateStocks.First().LastModifiedDateTime.ToString().Split(' ')[1]);
+                    DateTime dateStocks = System.IO.File.GetLastWriteTime(FileManager.stocksFilePath);
+
+                    if (odDateStocks.Year == dateStocks.Year)
+                    {
+                        if (odDateStocks.Month == dateStocks.Month)
+                        {
+                            if (odDateStocks.Day == dateStocks.Day)
+                            {
+                                if (odTimeStocks.Hours == dateStocks.Hour)
+                                {
+                                    if (odTimeStocks.Minutes == dateStocks.Minute)
+                                    {
+                                        if (odTimeStocks.Seconds < dateStocks.Second) SaveStock();
+                                        else TryGetStock();
+                                    }
+                                    else if (odTimeStocks.Minutes < dateStocks.Minute) SaveStock();
+                                    else TryGetStock();
+                                }
+                                else if (odTimeStocks.Hours < dateStocks.Hour) SaveStock();
+                                else TryGetStock();
+                            }
+                            else if (odDateStocks.Day < dateStocks.Day) SaveStock();
+                            else TryGetStock();
+                        }
+                        else if (odDateStocks.Month < dateStocks.Month) SaveStock();
+                        else TryGetStock();
+                    }
+                    else if (odDateStocks.Year < dateStocks.Year) SaveStock();
+                    else TryGetStock();
+                }
+                else
+                {
+                    TryGetStock();
+                }
+
+                ToastManager.Show("Successfully Synced");
+
+                try
+                {
+                    if (menu != null) menu.FillTodayOrders();
+                }
+                catch(Exception ex)
+                {
+
+                }
+            }
         }
 
 
-        private async void TryGetOrders()
+        public override async void TryGetOrders()
         {
             Stream orders = await GetOrders();
             string lstOrders;
@@ -223,7 +234,7 @@ namespace SamsonTechMobileApp
 
         }
 
-        private async void TryGetStocks()
+        public override async void TryGetStock()
         {
             Stream stocks = await GetStocks();
             string lstStocks;
@@ -276,7 +287,7 @@ namespace SamsonTechMobileApp
             return currentStocksTextStream;
         }
         
-        public async void SaveOrders()
+        public override async void SaveOrders()
         {
             Stream orders;
             
@@ -300,7 +311,7 @@ namespace SamsonTechMobileApp
             await UploadOrders(ordersMS.ToArray());            
         }
 
-        private async void SaveStocks()
+        public override async void SaveStock()
         {
             Stream stocks;
 

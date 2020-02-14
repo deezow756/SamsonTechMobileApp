@@ -8,8 +8,8 @@
         <StackLayout>
             <Label Text="Settings" HorizontalTextAlignment="Center" FontSize="50" TextColor="LimeGreen" BackgroundColor="Transparent"/>
             <Label Text="OneDrive Status" HorizontalTextAlignment="Center" FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-            <Label x:Name="txtStatus" Text="" HorizontalTextAlignment="Center" FontSize="20" TextColor="LimeGreen" BackgroundColor="Transparent"/>
-            <Button Text="Sign In" x:Name="btnSignIn" Clicked="btnSignIn_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderRadius="1">
+            <Label x:Name="txtOneDriveStatus" Text="" HorizontalTextAlignment="Center" FontSize="20" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+            <Button Text="" x:Name="btnOneDrive" Clicked="btnOneDrive_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderRadius="1">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="CommonStates">
                         <VisualState x:Name="Normal">
@@ -24,8 +24,10 @@
                         </VisualState>
                     </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
-            </Button>
-            <Button Text="Sign Out" x:Name="btnSignOut" Clicked="btnSignOut_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderRadius="1">
+            </Button>            
+            <Label Text="FireBase Status" HorizontalTextAlignment="Center" FontSize="30" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+            <Label x:Name="txtFireBaseStatus" Text="" HorizontalTextAlignment="Center" FontSize="20" TextColor="LimeGreen" BackgroundColor="Transparent"/>
+            <Button Text="" x:Name="btnFireBase" Clicked="btnFireBase_Clicked" FontSize="30" TextColor="LimeGreen" BackgroundColor="Black" BorderColor="LimeGreen" BorderRadius="1">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="CommonStates">
                         <VisualState x:Name="Normal">

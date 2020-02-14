@@ -13,7 +13,8 @@
                         <ViewCell ClassId="{Binding ClassId}" Tapped="TextCell_Tapped">
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Name}" TextColor="LimeGreen" FontSize="30" HorizontalOptions="StartAndExpand"/>
-                                <Image Source="{Binding Image}" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand"/>
+                                <Label Text="{Binding Quantity}" TextColor="LimeGreen" FontSize="30" HorizontalOptions="End"/>
+                                <Image Source="{Binding Image}" BackgroundColor="Transparent" HorizontalOptions="End"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

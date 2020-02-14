@@ -1,12 +1,4 @@
-﻿using Microsoft.Graph;
-using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,59 +8,138 @@ namespace SamsonTechMobileApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Settings : ContentPage
     {
-        AuthenticationResult authResult = null;
-        IEnumerable<IAccount> accounts;
+        CloudStorageManager storageManager;
 
-        OneDrive oneDrive;
-
-        public Settings(OneDrive oneDrive)
+        public Settings(CloudStorageManager storageManager)
         {
             InitializeComponent();
-            this.oneDrive = oneDrive;
-            this.oneDrive.settings = this;
+            this.storageManager = storageManager;
+            for (int i = 0; i < storageManager.clouds.Count; i++)
+            {
+                storageManager.clouds[i].settings = this;
+            }            
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (oneDrive.SignedIn)
+            CheckActive();
+        }
+
+        private void CheckActive()
+        {
+            if(storageManager.clouds.Count != 0)
             {
-                txtStatus.Text = "Signed In";
-                btnSignIn.IsEnabled = false;
+                for (int i = 0; i < storageManager.clouds.Count; i++)
+                {
+                    if(storageManager.clouds[i].GetType() == typeof(OneDrive))
+                    {
+                        txtOneDriveStatus.Text = "Active";
+                        txtOneDriveStatus.TextColor = Color.LimeGreen;
+                        btnOneDrive.Text = "Deactivate";
+                        storageManager.clouds[i].Signin();
+                    }
+                    else if (storageManager.clouds[i].GetType() == typeof(FirebaseDatabaseHelper))
+                    {
+                        txtFireBaseStatus.Text = "Active";
+                        txtFireBaseStatus.TextColor = Color.LimeGreen;
+                        btnFireBase.Text = "Deactivate";
+                        storageManager.clouds[i].Signin();
+                    }
+                }
+
+                string temp = txtOneDriveStatus.Text;
+                if(string.IsNullOrEmpty(temp))
+                {
+                    txtOneDriveStatus.Text = "Inactive";
+                    txtOneDriveStatus.TextColor = Color.Red;
+                    btnOneDrive.Text = "Activate";
+                }
+
+                temp = txtFireBaseStatus.Text;
+                if(string.IsNullOrEmpty(temp))
+                {
+                    txtFireBaseStatus.Text = "Inactive";
+                    txtFireBaseStatus.TextColor = Color.Red;
+                    btnFireBase.Text = "Activate";
+                }
             }
             else
             {
-                txtStatus.Text = "Signed Out";
-                btnSignOut.IsEnabled = false;
+                txtOneDriveStatus.Text = "Inactive";
+                txtOneDriveStatus.TextColor = Color.Red;
+                btnOneDrive.Text = "Activate";
+
+                txtFireBaseStatus.Text = "Inactive";
+                txtFireBaseStatus.TextColor = Color.Red;
+                btnFireBase.Text = "Activate";
             }
         }
 
-        private void btnSignIn_Clicked(object sender, EventArgs e)
+        private void btnFireBase_Clicked(object sender, EventArgs e)
         {
-            oneDrive.SignIn();
-            CheckSignedIn();
-        }
-
-        private void btnSignOut_Clicked(object sender, EventArgs e)
-        {
-            oneDrive.SignOut();
-            CheckSignedIn();
-        }
-
-        private async void CheckSignedIn()
-        {
-            await Task.Delay(2000);
-            if (oneDrive.SignedIn)
+            string temp = txtFireBaseStatus.Text;
+            if(temp == "Active")
             {
-                txtStatus.Text = "Signed In";
-                btnSignOut.IsEnabled = true;
-                btnSignIn.IsEnabled = false;
+                for (int i = 0; i < storageManager.clouds.Count; i++)
+                {
+                    if (storageManager.clouds[i].GetType() == typeof(FirebaseDatabaseHelper))
+                    {
+                        storageManager.clouds[i].Signout();
+                    }
+                }
+                storageManager.UpdateUsage("firebase", false);
+                txtFireBaseStatus.Text = "Inactive";
+                txtFireBaseStatus.TextColor = Color.Red;
+                btnFireBase.Text = "Activate";                
             }
             else
             {
-                txtStatus.Text = "Signed Out";
-                btnSignIn.IsEnabled = true;
-                btnSignOut.IsEnabled = false;
+                storageManager.UpdateUsage("firebase", true);
+                txtFireBaseStatus.Text = "Active";
+                txtFireBaseStatus.TextColor = Color.LimeGreen;
+                btnFireBase.Text = "Deactivate";
+                for (int i = 0; i < storageManager.clouds.Count; i++)
+                {
+                    if (storageManager.clouds[i].GetType() == typeof(FirebaseDatabaseHelper))
+                    {
+                        storageManager.clouds[i].Signin();
+                    }
+                }
+            }
+        }
+
+        private void btnOneDrive_Clicked(object sender, EventArgs e)
+        {
+            string temp = txtOneDriveStatus.Text;
+            if(temp == "Active")
+            {
+                for (int i = 0; i < storageManager.clouds.Count; i++)
+                {
+                    if (storageManager.clouds[i].GetType() == typeof(OneDrive))
+                    {
+                        storageManager.clouds[i].Signout();
+                    }
+                }
+                storageManager.UpdateUsage("onedrive", false);
+                txtOneDriveStatus.Text = "Inactive";
+                txtOneDriveStatus.TextColor = Color.Red;
+                btnOneDrive.Text = "Activate";
+            }
+            else
+            {
+                storageManager.UpdateUsage("onedrive", true);
+                txtOneDriveStatus.Text = "Active";
+                txtOneDriveStatus.TextColor = Color.LimeGreen;
+                btnOneDrive.Text = "Deactivate";
+
+                for (int i = 0; i < storageManager.clouds.Count; i++)
+                {
+                    if (storageManager.clouds[i].GetType() == typeof(OneDrive))
+                    {
+                        storageManager.clouds[i].Signin();
+                    }
+                }
             }
         }
     }

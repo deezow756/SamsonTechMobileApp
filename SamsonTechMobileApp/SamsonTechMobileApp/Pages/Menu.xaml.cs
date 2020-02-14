@@ -1,40 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.Graph;
-using Microsoft.Identity.Client;
-using System.Net.Http.Headers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SamsonTechMobileApp.Pages;
 
 namespace SamsonTechMobileApp
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Menu : ContentPage
 	{
-        OneDrive oneDrive;       
+        CloudStorageManager storageManager;     
 
         bool AfterStartUp = false;
 
         public Menu ()
 		{
 			InitializeComponent ();
-            oneDrive = new OneDrive(this);
+            storageManager = new CloudStorageManager(this);
             Progress.Show();
-            oneDrive.SignIn();            
+            if (storageManager.clouds.Count > 0)
+            {
+                for (int i = 0; i < storageManager.clouds.Count; i++)
+                {
+                    storageManager.clouds[i].Signin();
+                }
+            }
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            if (AfterStartUp && oneDrive.SignedIn)
+            if (AfterStartUp)
             {
-                oneDrive.Sync();
+                for (int i = 0; i < storageManager.clouds.Count; i++)
+                {
+                    storageManager.clouds[i].Sync();
+                }
             }
 
             FileManager fileManager = new FileManager();
@@ -101,7 +102,7 @@ namespace SamsonTechMobileApp
 
         private void BtnSettings_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Settings(oneDrive));
+            Navigation.PushAsync(new Settings(storageManager));
         }
     }
 }

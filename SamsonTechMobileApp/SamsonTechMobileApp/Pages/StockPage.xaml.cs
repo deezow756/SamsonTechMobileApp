@@ -27,7 +27,7 @@ namespace SamsonTechMobileApp.Pages
             FileManager fileManager = new FileManager();
             items = new List<Item>(fileManager.LoadItems());
             Setup();
-            firstBoot = false;
+            
         }
 
         protected override void OnAppearing()
@@ -37,6 +37,11 @@ namespace SamsonTechMobileApp.Pages
                 FileManager fileManager = new FileManager();
                 items = new List<Item>(fileManager.LoadItems());
                 Setup();
+
+            }
+            else
+            {
+                firstBoot = false;
             }
         }
 
