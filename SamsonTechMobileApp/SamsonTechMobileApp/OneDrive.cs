@@ -42,7 +42,7 @@ namespace SamsonTechMobileApp
             }
         }
 
-        public override async void Signin()
+        public override async Task Signin()
         {
             try
             {
@@ -73,7 +73,7 @@ namespace SamsonTechMobileApp
             }
         }
 
-        public override async void Signout()
+        public override async Task Signout()
         {
             try
             {
@@ -121,7 +121,7 @@ namespace SamsonTechMobileApp
             }
         }
 
-        public override async void Sync()
+        public override async Task Sync()
         {
             if (App.graphClient != null)
             {
@@ -142,27 +142,27 @@ namespace SamsonTechMobileApp
                                 {
                                     if (odTimeOrders.Minutes == dateOrders.Minute)
                                     {
-                                        if (odTimeOrders.Seconds < dateOrders.Second) SaveOrders();
-                                        else TryGetOrders();
+                                        if (odTimeOrders.Seconds < dateOrders.Second) await SaveOrders();
+                                        else await TryGetOrders();
                                     }
-                                    else if (odTimeOrders.Minutes < dateOrders.Minute) SaveOrders();
-                                    else TryGetOrders();
+                                    else if (odTimeOrders.Minutes < dateOrders.Minute) await SaveOrders();
+                                    else await TryGetOrders();
                                 }
-                                else if (odTimeOrders.Hours < dateOrders.Hour) SaveOrders();
-                                else TryGetOrders();
+                                else if (odTimeOrders.Hours < dateOrders.Hour) await SaveOrders();
+                                else await TryGetOrders();
                             }
-                            else if (odDateOrders.Day < dateOrders.Day) SaveOrders();
-                            else TryGetOrders();
+                            else if (odDateOrders.Day < dateOrders.Day) await SaveOrders();
+                            else await TryGetOrders();
                         }
-                        else if (odDateOrders.Month < dateOrders.Month) SaveOrders();
-                        else TryGetOrders();
+                        else if (odDateOrders.Month < dateOrders.Month) await SaveOrders();
+                        else await TryGetOrders();
                     }
-                    else if (odDateOrders.Year < dateOrders.Year) SaveOrders();
-                    else TryGetOrders();
+                    else if (odDateOrders.Year < dateOrders.Year) await SaveOrders();
+                    else await TryGetOrders();
                 }
                 else
                 {
-                    TryGetOrders();
+                    await TryGetOrders();
                 }
 
 
@@ -184,27 +184,27 @@ namespace SamsonTechMobileApp
                                 {
                                     if (odTimeStocks.Minutes == dateStocks.Minute)
                                     {
-                                        if (odTimeStocks.Seconds < dateStocks.Second) SaveStock();
-                                        else TryGetStock();
+                                        if (odTimeStocks.Seconds < dateStocks.Second) await SaveStock();
+                                        else await TryGetStock();
                                     }
-                                    else if (odTimeStocks.Minutes < dateStocks.Minute) SaveStock();
-                                    else TryGetStock();
+                                    else if (odTimeStocks.Minutes < dateStocks.Minute) await SaveStock();
+                                    else await TryGetStock();
                                 }
-                                else if (odTimeStocks.Hours < dateStocks.Hour) SaveStock();
-                                else TryGetStock();
+                                else if (odTimeStocks.Hours < dateStocks.Hour) await SaveStock();
+                                else await TryGetStock();
                             }
-                            else if (odDateStocks.Day < dateStocks.Day) SaveStock();
-                            else TryGetStock();
+                            else if (odDateStocks.Day < dateStocks.Day) await SaveStock();
+                            else await TryGetStock();
                         }
-                        else if (odDateStocks.Month < dateStocks.Month) SaveStock();
-                        else TryGetStock();
+                        else if (odDateStocks.Month < dateStocks.Month) await SaveStock();
+                        else await TryGetStock();
                     }
-                    else if (odDateStocks.Year < dateStocks.Year) SaveStock();
-                    else TryGetStock();
+                    else if (odDateStocks.Year < dateStocks.Year) await SaveStock();
+                    else await TryGetStock();
                 }
                 else
                 {
-                    TryGetStock();
+                    await TryGetStock();
                 }
 
                 ToastManager.Show("Successfully Synced");
@@ -221,7 +221,7 @@ namespace SamsonTechMobileApp
         }
 
 
-        public override async void TryGetOrders()
+        public override async Task TryGetOrders()
         {
             Stream orders = await GetOrders();
             string lstOrders;
@@ -234,7 +234,7 @@ namespace SamsonTechMobileApp
 
         }
 
-        public override async void TryGetStock()
+        public override async Task TryGetStock()
         {
             Stream stocks = await GetStocks();
             string lstStocks;
@@ -287,7 +287,7 @@ namespace SamsonTechMobileApp
             return currentStocksTextStream;
         }
         
-        public override async void SaveOrders()
+        public override async Task SaveOrders()
         {
             Stream orders;
             
@@ -311,7 +311,7 @@ namespace SamsonTechMobileApp
             await UploadOrders(ordersMS.ToArray());            
         }
 
-        public override async void SaveStock()
+        public override async Task SaveStock()
         {
             Stream stocks;
 

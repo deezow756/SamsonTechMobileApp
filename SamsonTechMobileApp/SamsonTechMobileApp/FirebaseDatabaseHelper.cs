@@ -20,11 +20,11 @@ namespace SamsonTechMobileApp
             this.menu = menu;
         }
 
-        public override async void Sync()
+        public override async Task Sync()
         {
             if (firebase != null)
             {
-                if (System.IO.File.Exists(FileManager.ordersFilePath))
+                if (!System.IO.File.Exists(FileManager.ordersFilePath))
                 {
                     try
                     {
@@ -50,37 +50,37 @@ namespace SamsonTechMobileApp
                                     {
                                         if (firebaseDateOrders.Minute == dateOrders.Minute)
                                         {
-                                            if (firebaseDateOrders.Second < dateOrders.Second) SaveOrders();
-                                            else TryGetOrders();
+                                            if (firebaseDateOrders.Second < dateOrders.Second) await SaveOrders();
+                                            else await TryGetOrders();
                                         }
-                                        else if (firebaseDateOrders.Minute < dateOrders.Minute) SaveOrders();
-                                        else TryGetOrders();
+                                        else if (firebaseDateOrders.Minute < dateOrders.Minute) await SaveOrders();
+                                        else await TryGetOrders();
                                     }
-                                    else if (firebaseDateOrders.Hour < dateOrders.Hour) SaveOrders();
-                                    else TryGetOrders();
+                                    else if (firebaseDateOrders.Hour < dateOrders.Hour) await SaveOrders();
+                                    else await TryGetOrders();
                                 }
-                                else if (firebaseDateOrders.Day < dateOrders.Day) SaveOrders();
-                                else TryGetOrders();
+                                else if (firebaseDateOrders.Day < dateOrders.Day) await SaveOrders();
+                                else await TryGetOrders();
                             }
-                            else if (firebaseDateOrders.Month < dateOrders.Month) SaveOrders();
-                            else TryGetOrders();
+                            else if (firebaseDateOrders.Month < dateOrders.Month) await SaveOrders();
+                            else await TryGetOrders();
                         }
-                        else if (firebaseDateOrders.Year < dateOrders.Year) SaveOrders();
-                        else TryGetOrders();
+                        else if (firebaseDateOrders.Year < dateOrders.Year) await SaveOrders();
+                        else await TryGetOrders();
                     }
                     catch (Exception ex)
                     {
-                        SaveOrders();
+                        await SaveOrders();
                     }
                 }
                 else
                 {
-                    TryGetOrders();
+                    await TryGetOrders();
                 }
 
 
 
-                if (System.IO.File.Exists(FileManager.stocksFilePath))
+                if (!System.IO.File.Exists(FileManager.stocksFilePath))
                 {
                     try
                     {
@@ -106,32 +106,32 @@ namespace SamsonTechMobileApp
                                     {
                                         if (firebaseDateStock.Minute == dateStocks.Minute)
                                         {
-                                            if (firebaseDateStock.Second < dateStocks.Second) SaveStock();
-                                            else TryGetStock();
+                                            if (firebaseDateStock.Second < dateStocks.Second) await SaveStock();
+                                            else await TryGetStock();
                                         }
-                                        else if (firebaseDateStock.Minute < dateStocks.Minute) SaveStock();
-                                        else TryGetStock();
+                                        else if (firebaseDateStock.Minute < dateStocks.Minute) await SaveStock();
+                                        else await TryGetStock();
                                     }
-                                    else if (firebaseDateStock.Hour < dateStocks.Hour) SaveStock();
-                                    else TryGetStock();
+                                    else if (firebaseDateStock.Hour < dateStocks.Hour) await SaveStock();
+                                    else await TryGetStock();
                                 }
-                                else if (firebaseDateStock.Day < dateStocks.Day) SaveStock();
-                                else TryGetStock();
+                                else if (firebaseDateStock.Day < dateStocks.Day) await SaveStock();
+                                else await TryGetStock();
                             }
-                            else if (firebaseDateStock.Month < dateStocks.Month) SaveStock();
-                            else TryGetStock();
+                            else if (firebaseDateStock.Month < dateStocks.Month) await SaveStock();
+                            else await TryGetStock();
                         }
-                        else if (firebaseDateStock.Year < dateStocks.Year) SaveStock();
-                        else TryGetStock();
+                        else if (firebaseDateStock.Year < dateStocks.Year) await SaveStock();
+                        else await TryGetStock();
                     }
                     catch (Exception ex)
                     {
-                        SaveStock();
+                        await SaveStock();
                     }
                 }
                 else
                 {
-                    TryGetStock();
+                    await TryGetStock();
                 }
 
                 ToastManager.Show("Successfully Synced");
@@ -328,25 +328,27 @@ namespace SamsonTechMobileApp
         //}
         #endregion
 
-        public override void Signin()
+        public override async Task Signin()
         {
             try
             {
-                firebase = new FirebaseClient("https://samsontech-ebf50.firebaseio.com/");
+                if(firebase == null)
+                    firebase = new FirebaseClient("https://samsontech-ebf50.firebaseio.com/");
             }
             catch (Exception ex)
             {
                 DisplayMessage("Could not sign into firebase", ex.Message, "ok");
             }
 
-            Sync();            
+            await Sync();            
         }
-        public override void Signout()
+        public override Task Signout()
         {
             firebase = null;
+            return null;
         }
 
-        public override async void TryGetOrders()
+        public override async Task TryGetOrders()
         {
             List<Order> orders = await GetAllOrders();
             string[] jsons = new string[orders.Count];
@@ -361,24 +363,33 @@ namespace SamsonTechMobileApp
 
         async Task <List<Order>> GetAllOrders()
         {
-            return (await firebase
-              .Child("Orders")
-              .OnceAsync<Order>(System.TimeSpan.FromSeconds(2))).Select(item => new Order
-              {
-                  ID = item.Object.ID,
-                  Name = item.Object.Name,
-                  Contact = item.Object.Contact,
-                  Date = item.Object.Date,
-                  Device = item.Object.Device,
-                  Colour = item.Object.Colour,
-                  ReasonForFix = item.Object.ReasonForFix,
-                  Price = item.Object.Price,
-                  Cost = item.Object.Cost,
-                  Completed = item.Object.Completed
-              }).ToList();
+            try
+            {
+                return (await firebase
+                    .Child("Orders")
+                    .OnceAsync<Order>()).Select(order => new Order
+                    {
+                        ID = order.Object.ID,
+                        Name = order.Object.Name,
+                        Contact = order.Object.Contact,
+                        Date = order.Object.Date,
+                        Device = order.Object.Device,
+                        Colour = order.Object.Colour,
+                        ReasonForFix = order.Object.ReasonForFix,
+                        Price = order.Object.Price,
+                        Cost = order.Object.Cost,
+                        Completed = order.Object.Completed
+                    }).ToList();
+            }
+            catch (Exception ex)
+            {
+                DisplayMessage("error", ex.Message, "ok");
+                return null;
+            }
+            
         }
 
-        public override async void TryGetStock()
+        public override async Task TryGetStock()
         {
             List<Item> stocks = await GetAllStocks();
             string[] jsons = new string[stocks.Count];
@@ -393,20 +404,27 @@ namespace SamsonTechMobileApp
 
         async Task<List<Item>> GetAllStocks()
         {
-            return (await firebase
-              .Child("Stocks")
-              .OnceAsync<Item>(System.TimeSpan.FromSeconds(2))).Select(item => new Item
-              {
-                  Catergory = item.Object.Catergory,
-                  Name = item.Object.Name,
-                  Quantity = item.Object.Quantity,
-                  Description = item.Object.Description,
-                  CatergoryType = item.Object.CatergoryType
-              }).ToList();
+            try
+            {
+                return (await firebase
+                  .Child("Stocks")
+                  .OnceAsync<Item>(System.TimeSpan.FromSeconds(5))).Select(item => new Item
+                  {
+                      Catergory = item.Object.Catergory,
+                      Name = item.Object.Name,
+                      Quantity = item.Object.Quantity,
+                      Description = item.Object.Description,
+                      CatergoryType = item.Object.CatergoryType
+                  }).ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
                              
 
-        public override async void SaveOrders()
+        public override async Task SaveOrders()
         {
             string[] jsons = File.ReadAllLines(FileManager.ordersFilePath);
             List<Order> orders = new List<Order>();
@@ -484,7 +502,7 @@ namespace SamsonTechMobileApp
             }
         }
 
-        public override async void SaveStock()
+        public override async Task SaveStock()
         {
             string[] jsons = File.ReadAllLines(FileManager.stocksFilePath);
             List<Item> stocks = new List<Item>();

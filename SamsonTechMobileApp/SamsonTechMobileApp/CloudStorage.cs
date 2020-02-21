@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SamsonTechMobileApp
 {
@@ -9,14 +10,14 @@ namespace SamsonTechMobileApp
     {
         public Settings settings;
 
-        public virtual void Signin() {; }
-        public virtual void Signout() {; }
+        public virtual Task Signin() {return null; }
+        public virtual Task Signout() {return null; }
 
-        public virtual void TryGetOrders() {; }
-        public virtual void TryGetStock() {; }
-        public virtual void SaveOrders() {; }
-        public virtual void SaveStock() {; }
-        public virtual void Sync() {; }
+        public virtual Task TryGetOrders() {return null; }
+        public virtual Task TryGetStock() {return null; }
+        public virtual Task SaveOrders() {return null; }
+        public virtual Task SaveStock() {return null; }
+        public virtual Task Sync() {return null; }
 
     }
 }

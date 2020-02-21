@@ -25,8 +25,8 @@ namespace SamsonTechMobileApp
             List<string> usages;
 
             usages = new List<string>();
-            usages.Add("onedrive,1");
-            usages.Add("firebase,0");
+            usages.Add("onedrive,0");
+            usages.Add("firebase,1");
             fileManager.SaveStorageUsage(usages.ToArray());
 
             
